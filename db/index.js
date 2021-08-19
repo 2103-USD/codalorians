@@ -1,11 +1,12 @@
-const ordersRouter = require("../routes/orders");
+// database methods
 
 // export
 module.exports = {
-    ...require("./client"),
-    ...require("./users"),
-    ...require("./products"),
-    ...require("./users"),
-    ...require("./orders"),
-    ...require("./order_products")
-}
+  // db methods
+  ...require("./client"),
+  ...require("./users"),
+  ...require("./products"),
+  ...require("./users"),
+  ...require("./orders"),
+  ...require("./order_products"),
+};
