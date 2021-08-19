@@ -82,7 +82,7 @@ async function getUserById(userId) {
     delete user.password;
     return user;
   } catch (error) {
-    throw error;
+    console.error(error)
   }
 }
 
