@@ -1,5 +1,4 @@
 const express = require("express");
-const routinesRouter = require("../../UNIV_FitnessTrackr_Starter/api/routines");
 const productsRouter = express.Router();
 
 const { getAllProducts, getProductById } = require("../db");
@@ -13,7 +12,7 @@ productsRouter.get("/products", async (req, res, next) => {
   }
 });
 
-routinesRouter.get("/product/:productId", async (req, res, next) => {
+productsRouter.get("/product/:productId", async (req, res, next) => {
   try {
     const product = await getProductById(id);
 
