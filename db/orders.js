@@ -7,8 +7,8 @@ async function getOrderById(id) {
     } = await client.query(`
             SELECT *
             FROM orders
-            WHERE id=id;
-        `);
+            WHERE id=$1;
+        `, [id]);
     return order;
   } catch (error) {
     throw error;
@@ -64,3 +64,7 @@ async function getOrdersByProduct({}) {}
 async function getCartByUser({}) {}
 
 async function createOrder({}) {}
+
+module.exports = {
+
+}

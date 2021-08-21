@@ -5,8 +5,9 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { getSomething } from "../api";
-import { getCurrentUser } from "../auth";
+import { getSomething } from "./api/index";
+import { getCurrentUser } from "./auth/auth";
+import Modal from "./Modal";
 
 const App = () => {
   const [message, setMessage] = useState("");
