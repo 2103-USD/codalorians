@@ -10,7 +10,7 @@ productsRouter.get("/products", async (req, res, next) => {
 
     res.send(products);
   } catch (error) {
-    next(error);
+    next({ name: "ErrorMsg", message: `${error}` });
   }
 });
 
@@ -20,7 +20,7 @@ routinesRouter.get("/product/:productId", async (req, res, next) => {
 
     res.send(product);
   } catch (error) {
-    next(error);
+    next({ name: "ErrorMsg", message: `${error}` });
   }
 });
 

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { getOrders } from "../api";
+import { getOrders } from "./api";
+import OrderData from "./OrderData";
 
 const Cart = ({ currentUser }) => {
   const [ordersList, setOrdersList] = useState([]);
   const { id, username } = currentUser;
-
+  /*
   useEffect(
     (id) =>
       getOrders()
         .then(setOrdersList(orders))
         .catch((error) => console.error(error))[currentUser]
   );
-
+ */
   return ordersList.length > 0 ? (
     <div>
       <h2>Your cart currently has {ordersList.length} items</h2>
