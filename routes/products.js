@@ -5,15 +5,23 @@ const productsRouter = express.Router();
 const { getAllProducts, getProductById } = require("../db");
 
 productsRouter.get("/products", async (req, res, next) => {
-  const products = await getAllProducts();
+  try {
+    const products = await getAllProducts();
 
-  res.send(products);
+    res.send(products);
+  } catch (error) {
+    next(error);
+  }
 });
 
 routinesRouter.get("/product/:productId", async (req, res, next) => {
-  const product = await getProductById(id);
+  try {
+    const product = await getProductById(id);
 
-  res.send(product);
+    res.send(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = productsRouter;
