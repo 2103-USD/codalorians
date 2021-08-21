@@ -1,13 +1,15 @@
-import React from "react";
-import { getProducts } from "../api";
+import React, { useState, useEffect } from "react";
+import { getProducts } from "./api";
 import Product from "./Product";
 const AllProducts = () => {
   const [productList, setProduct] = useState([]);
 
-  useEffect(() =>
-    getProducts()
-      .then(setProduct(product))
-      .catch((error) => console.error(error))
+  useEffect(
+    () =>
+      getAllProducts()
+        .then(setProduct(product))
+        .catch((error) => console.error(error)),
+    productList
   );
 
   return (

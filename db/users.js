@@ -12,7 +12,7 @@ async function createUser({ username, password }) {
     INSERT INTO users(username, password)
     VALUES($1, $2)
     ON CONFLICT (username) DO NOTHING
-    RETURN id, username;
+    RETURNING id, username;
     `,
       [username, hashedPassword]
     );
@@ -82,7 +82,7 @@ async function getUserById(userId) {
     delete user.password;
     return user;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 

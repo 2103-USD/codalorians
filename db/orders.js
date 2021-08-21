@@ -8,7 +8,7 @@ async function getOrderById(id) {
             SELECT *
             FROM orders
             WHERE id=id;
-        `);
+        `), [id];
     return order;
   } catch (error) {
     throw error;

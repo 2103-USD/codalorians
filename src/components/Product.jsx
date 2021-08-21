@@ -19,7 +19,8 @@ const Product = ({
       <img src={imageUrl} />
       <h2>Price: {price}</h2>
       <category>{category}</category>
-      <h3>Availability: {inStock ? Yes : No} </h3>
+     {//<h3>Availability: {inStock ? True : False } </h3>\
+}
       <p>Description: {description}</p>
     </div>
   );
