@@ -7,7 +7,7 @@ async function getOrderById(id) {
     } = await client.query(`
             SELECT *
             FROM orders
-            WHERE id=id;
+            WHERE id=$1;
         `), [id];
     return order;
   } catch (error) {

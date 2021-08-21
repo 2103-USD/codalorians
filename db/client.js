@@ -1,5 +1,5 @@
 const { Client } = require("pg");
-const CONNECTION_STRING = "postgres://localhost:5432/shop-db"
-const client = new Client(CONNECTION_STRING);
+const connection_string = process.env.DB_URL || "postgres://localhost:5432/shop-db";
+const client = new Client(connection_string);
 
 module.exports = client;
