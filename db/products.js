@@ -45,10 +45,12 @@ async function createProduct({
     } = await client.query(
       `
             INSERT INTO products (name, description, price, imageurl, instock, category)
-            VALUES ($1, $2, $3, $4, $5, $6);
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING *;
         `,
       [name, description, price, imageurl, instock, category]
     );
+    console.log(product);
     return product;
   } catch (error) {
     console.error(error);

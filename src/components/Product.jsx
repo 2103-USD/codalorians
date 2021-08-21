@@ -7,8 +7,8 @@ const Product = ({
   name,
   description,
   price,
-  imageUrl,
-  inStock,
+  imageurl,
+  instock,
   category,
 }) => {
   return (
@@ -16,11 +16,10 @@ const Product = ({
       <h1>
         Product Name: <NavLink to="/product/:productId"> {name} </NavLink>
       </h1>
-      <img src={imageUrl} />
+      <img src={imageurl} />
       <h2>Price: {price}</h2>
       <category>{category}</category>
-     {//<h3>Availability: {inStock ? True : False } </h3>\
-}
+      {<h3>Availability: {instock ? true : false} </h3>}
       <p>Description: {description}</p>
     </div>
   );

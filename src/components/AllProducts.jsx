@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "./api";
+import { getAllProducts } from "./api";
 import Product from "./Product";
 const AllProducts = () => {
   const [productList, setProduct] = useState([]);
@@ -7,7 +7,7 @@ const AllProducts = () => {
   useEffect(
     () =>
       getAllProducts()
-        .then(setProduct(product))
+        .then(setProduct())
         .catch((error) => console.error(error)),
     productList
   );
@@ -22,9 +22,9 @@ const AllProducts = () => {
             name={product.name}
             description={product.description}
             price={product.price}
-            imageUrl={product.imageUrl}
-            inStock={inStock}
-            category={category}
+            imageurl={product.imageurl}
+            instock={product.instock}
+            category={product.category}
           />
         );
       })}

@@ -26,11 +26,11 @@ async function buildTables() {
     CREATE TABLE products (
       id           SERIAL PRIMARY KEY,
       name         VARCHAR(255) NOT NULL,
-      description  VARCHAR(255) NOT NULL,
-      price        INTEGER NOT NULL,
+      description  TEXT NOT NULL,
+      price        MONEY NOT NULL,
       imageurl     TEXT DEFAULT 'https://image.flaticon.com/icons/png/512/2827/2827585.png',
       instock      BOOLEAN NOT NULL DEFAULT false,
-      category     VARCHAR(255) NOT NULL,
+      category     VARCHAR(255) NOT NULL
       );
 
     CREATE TABLE users (
@@ -41,22 +41,22 @@ async function buildTables() {
       imageurl    TEXT DEFAULT 'https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg',
       username    VARCHAR(255) UNIQUE NOT NULL,
       password    VARCHAR(255) UNIQUE NOT NULL,
-      isadmin     BOOLEAN NOT NULL DEFAULT false,
+      isadmin     BOOLEAN NOT NULL DEFAULT false
       );
 
     CREATE TABLE orders (
       id          SERIAL PRIMARY KEY,
       status      VARCHAR(255) DEFAULT 'created',
       userid      INTEGER REFERENCES users(id),
-      dateplaced  DATE DEFAULT sysdate NOT NULL,
+      created     TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
       );
 
     CREATE TABLE order_products (
       id          SERIAL PRIMARY KEY,
       productid   INTEGER REFERENCES products(id),
       orderid     INTEGER REFERENCES orders(id),
-      price       INTEGER NOT NULL,
-      quantity    INTEGER NOT NULL DEFAULT (0),
+      price       MONEY NOT NULL,
+      quantity    INTEGER NOT NULL DEFAULT (0)
       );
     `);
     console.log("TABLES BUILT");
@@ -77,7 +77,7 @@ async function createInitialUsers() {
           "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
         username: "ayambao",
         password: "abc123",
-        isAdmin: true,
+        isadmin: true,
       },
       {
         firstname: "Enzi",
@@ -87,7 +87,7 @@ async function createInitialUsers() {
           "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
         username: "eschow",
         password: "abc123",
-        isAdmin: true,
+        isadmin: true,
       },
       {
         firstname: "Anthony",
@@ -97,7 +97,7 @@ async function createInitialUsers() {
           "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
         username: "afernan",
         password: "abc123",
-        isAdmin: true,
+        isadmin: true,
       },
     ];
     const users = await Promise.all(
