@@ -1,10 +1,5 @@
-// Connect to DB
-const { Client } = require('pg');
+const { Client } = require("pg");
+const connection_string = process.env.DB_URL || "postgres://localhost:5432/shop-db";
+const client = new Client(connection_string);
 
-const CONGO = 'shop-db'
-
-const DB_URL = process.env.DATABASE_URL || `postgres://localhost:5000/${ CONGO }`;
-const client = new Client(DB_URL);
-
-// export
-module.exports = {client}
+module.exports = client;

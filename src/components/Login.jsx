@@ -1,27 +1,41 @@
 import React, { useState } from "react";
-import { storeCurrentUser } from "../../../../project_16/fitness_tracker_front_end/src/auth";
-import { LoginUser } from "../api";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { storeCurrentUser } from "./auth/auth";
+import { LoginUser } from "./api/index";
 
 const Login = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginMessage, setLoginMessage] = useState(null);
 
   function validateForm() {
     return username.length > 0 && password.length > 0;
   }
 
+  const messageDiv = loginMessage ? (
+    <div className="message">{loginMessage}</div>
+  ) : (
+    ""
+  );
+
   async function handleSubmit(event) {
     event.preventDefault();
     setLoginMessage(null);
     try {
-      const result = await loginUser(username, password);
+      /* const result = await loginUser(username, password); 
       if (result.user) {
         handleLogin(result);
         setLoginMessage(result.message);
       }
+      */
     } catch (error) {
       setLoginMessage("Username or Password Invalid.");
     }
+  }
+
+  async function handleClose() {
+
   }
 
   async function handleLogin(result) {
@@ -61,4 +75,5 @@ const Login = ({ setCurrentUser }) => {
     </div>
   );
 };
+
 export default Login;

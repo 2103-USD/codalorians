@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
-import { registerUser } from "../api";
-import { storeCurrentUser } from "../auth";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { registerUser } from "./api/index";
+import { storeCurrentUser } from "./auth/auth";
 
 const Register = ({ handleClose, setCurrentUser }) => {
   const [username, setUsername] = useState("");
