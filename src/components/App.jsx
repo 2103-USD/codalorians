@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { getSomething } from "../api";
 import { getCurrentUser } from "../auth";
+import Modal from "./Modal";
 
 const App = () => {
   const [message, setMessage] = useState("");
