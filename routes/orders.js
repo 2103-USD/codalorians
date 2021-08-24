@@ -1,13 +1,7 @@
 const express = require("express");
 const ordersRouter = express.Router();
-
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-
-// If a route has a (*) next to it, it means that it should require a logged in user to be present,
-// if a route has a (**) next to it, the logged in user should be the owner of the modified object.
-// If a route has (*admin) next to it, the logged in user must be an admin user (user.isAdmin === true).
-// Any (**) route should also be accessible by any (*admin) user.
 
 const { requireUserOrAdmin, requireAdmin } = require("./utils");
 
@@ -16,7 +10,12 @@ ordersRouter.use((req, res, next) => {
   next();
 });
 
-const { getAllOrders, getCartByUser } = require("../db");
+const {
+  getAllOrders,
+  getCartByUser,
+  updateOrderProduct,
+  destroyOrderProduct,
+} = require("../db");
 
 //THIS SHOULD RETURN A LIST OF ALL ORDERS
 //NEEDS requireAdmin FROM /UTILS
@@ -46,6 +45,33 @@ ordersRouter.post("/", requireUserOrAdmin, async (req, res, next) => {
   try {
     const userOrder = await createOrder({ status, userId });
     res.send(userOrder);
+  } catch (error) {
+    next(error);
+  }
+});
+
+ordersRouter.patch("/:orderId", async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    const { id, status, userId } = req.body;
+    const updatedOrder = await updateOrder({ id, orderId, userId, status });
+    res.send(updatedOrder);
+  } catch (error) {
+    next(error);
+  }
+});
+
+ordersRouter.delete("/:orderId", async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    const { id, status, userId } = req.body;
+    const deletedOrder = await destroyOrderProduct({
+      id,
+      orderId,
+      userId,
+      status,
+    });
+    res.send(deletedOrder);
   } catch (error) {
     next(error);
   }
