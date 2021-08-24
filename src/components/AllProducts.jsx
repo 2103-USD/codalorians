@@ -9,7 +9,7 @@ const AllProducts = () => {
       getAllProducts()
         .then(setProduct())
         .catch((error) => console.error(error)),
-    productList
+    []
   );
 
   return (
