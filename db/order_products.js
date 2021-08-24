@@ -21,11 +21,24 @@ async function getOrderProductById(id) {
 //still needs work before this function is completed
 async function addProductToOrder({ orderId, routineId, price, quantity }) {
   try {
+    const {
+      rows: [orderProduct],
+    } = await client.query(
+      `
+        INSERT INTO order_products("orderId", "routineId", price, quantity)
+        VALUES ($1, $2, $3, $4)
+        RETURNING *;
+      `,
+      [orderId, routineId, price, quantity]
+    );
+
+    return orderProduct;
   } catch (error) {
     throw error;
   }
 }
 
+//needs work prior to completion
 async function updateOrderProduct() {}
 
 async function destroyOrderProduct(id) {
