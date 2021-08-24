@@ -1,11 +1,12 @@
 const express = require("express");
-const orderProductsRouter = express.Router();
+const ordersProductsRouter = express.Router();
 const {
   getOrderProductById,
   getOrdersByProducts,
   updateOrderProduct,
   addProductToOrder,
 } = "./db";
+const { requireUserOrAdmin } = require("./utils");
 
 //POST /orders/:orderId/products
 ordersProductsRouter.post(
@@ -64,7 +65,7 @@ ordersProductsRouter.patch(
 //DELETE /order_products/:orderProductId (**)
 ordersProductsRouter.delete(
   "/order_products/:orderProductId",
-  requireUser,
+  requireUserOrAdmin,
   async (req, res, next) => {
     const { id } = req.user;
     const { orderProductId } = req.params;
@@ -81,4 +82,4 @@ ordersProductsRouter.delete(
   }
 );
 
-module.exports = orderProductsRouter;
+module.exports = ordersProductsRouter;
