@@ -13,7 +13,12 @@ import Modal from "./Modal";
 
 const App = () => {
   const [message, setMessage] = useState("");
-  const [currentUser, setCurrentUser] = useState(getCurrentUser());
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    const user = getCurrentUser();
+    setCurrentUser(user);
+  }, []);
 
   useEffect(() => {
     const result = getAllProducts();
