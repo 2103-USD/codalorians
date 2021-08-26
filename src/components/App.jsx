@@ -20,11 +20,6 @@ const App = () => {
     setCurrentUser(user);
   }, []);
 
-  useEffect(() => {
-    const result = getAllProducts();
-    console.log("These are the products:", result);
-  }, []);
-
   return (
     <div className="App">
       <Modal currentUser={currentUser} setCurrentUser={setCurrentUser} />

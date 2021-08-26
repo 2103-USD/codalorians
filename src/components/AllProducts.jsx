@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts } from "./api";
 import Product from "./Product";
 const AllProducts = () => {
-  const [productList, setProduct] = useState([]);
+  const [productList, setProductList] = useState([]);
 
   useEffect(
     () =>
       getAllProducts()
-        .then(setProduct())
+        .then((data) => setProductList(data))
         .catch((error) => console.error(error)),
     []
   );
