@@ -5,9 +5,10 @@ import Register from "./Register";
 import { NavLink } from "react-router-dom";
 
 const Modal = ({ setCurrentUser, currentUser }) => {
-  const { username } = currentUser;
+  const { username } = currentUser || {};
   return (
     <div>
+      {/*
       !{currentUser} ?
       <>
         <Login setCurrentUser={setCurrentUser} />
@@ -22,7 +23,7 @@ const Modal = ({ setCurrentUser, currentUser }) => {
         </NavLink>
         <NavLink to="/products">Products</NavLink>
         <LogoutButton setCurrentUser={setCurrentUser} />
-      </>
+      </>*/}
     </div>
   );
 };

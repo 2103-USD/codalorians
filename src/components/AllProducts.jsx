@@ -1,13 +1,16 @@
-import React from "react";
-import { getProducts } from "../api";
+import React, { useState, useEffect } from "react";
+import { getAllProducts } from "./api";
 import Product from "./Product";
-const AllProducts = () => {
-  const [productList, setProduct] = useState([]);
 
-  useEffect(() =>
-    getProducts()
-      .then(setProduct(product))
-      .catch((error) => console.error(error))
+const AllProducts = () => {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(
+    () =>
+      getAllProducts()
+        .then(setProductList)
+        .catch((error) => console.error(error)),
+    []
   );
 
   return (
@@ -20,9 +23,9 @@ const AllProducts = () => {
             name={product.name}
             description={product.description}
             price={product.price}
-            imageUrl={product.imageUrl}
-            inStock={inStock}
-            category={category}
+            imageurl={product.imageurl}
+            instock={product.instock}
+            category={product.category}
           />
         );
       })}

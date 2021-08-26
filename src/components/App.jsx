@@ -5,22 +5,25 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { getSomething } from "../api";
-import { getCurrentUser } from "../auth";
+
+import { getAllProducts, getSomething } from "./api/index";
+import { getCurrentUser } from "./auth/auth";
+
+import Modal from "./Modal";
 
 const App = () => {
   const [message, setMessage] = useState("");
-  const [currentUser, setCurrentUser] = useState(getCurrentUser());
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    getSomething()
-      .then((response) => {
-        setMessage(response.message);
-      })
-      .catch((error) => {
-        setMessage(error.message);
-      });
-  });
+    const user = getCurrentUser();
+    setCurrentUser(user);
+  }, []);
+
+  useEffect(() => {
+    const result = getAllProducts();
+    console.log("These are the products:", result);
+  }, []);
 
   return (
     <div className="App">
