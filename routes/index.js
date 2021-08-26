@@ -5,6 +5,14 @@ const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db");
 const { JWT_SECRET } = process.env;
 
+apiRouter.get("/health", (req, res, next) => {
+  res.send("Server up and running!");
+});
+
+apiRouter.get("/", (req, res, next) =>{
+  res.send({message: "API router under construction"});
+})
+
 apiRouter.use(async (req, res, next) => {
   const prefix = "Bearer ";
   const auth = req.header("Authorization");
