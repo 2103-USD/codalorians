@@ -8,6 +8,7 @@ import {
 
 import { getAllProducts, getSomething } from "./api/index";
 import { getCurrentUser } from "./auth/auth";
+import AllProducts from "./AllProducts";
 
 import Modal from "./Modal";
 
@@ -20,17 +21,16 @@ const App = () => {
     setCurrentUser(user);
   }, []);
 
-  useEffect(() => {
-    const result = getAllProducts();
-    console.log("These are the products:", result);
-  }, []);
 
   return (
+    <Router>
     <div className="App">
       <Modal currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <AllProducts />
       <h1>Hello, World!</h1>
       <h2>{message}</h2>
     </div>
+    </Router>
   );
 };
 
