@@ -3,8 +3,11 @@ import { getOrders } from "./api";
 import OrderData from "./OrderData";
 
 const Cart = ({ currentUser }) => {
-  const [ordersList, setOrdersList] = useState([]);
   const { id, username } = currentUser;
+  const [cart, setCart] = useState([]);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [order, setOrder] = useState({});
+
   /*
   useEffect(
     (id) =>
@@ -13,10 +16,10 @@ const Cart = ({ currentUser }) => {
         .catch((error) => console.error(error))[currentUser]
   );
  */
-  return ordersList.length > 0 ? (
+  return cart.length > 0 ? (
     <div>
-      <h2>Your cart currently has {ordersList.length} items</h2>
-      {ordersList.map((order, index) => {
+      <h2>Your cart currently has {cart.length} items</h2>
+      {cart.map((order, index) => {
         return <OrderData id={order.id} />;
       })}
     </div>

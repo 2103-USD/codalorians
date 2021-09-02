@@ -26,6 +26,7 @@ const AllProducts = () => {
             imageurl={product.imageurl}
             instock={product.instock}
             category={product.category}
+            key={`productId${product.id}`}
           />
         );
       })}
