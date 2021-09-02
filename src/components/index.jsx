@@ -8,4 +8,3 @@ export { default as Register} from './Register';
 export { default as UserData} from './UserData';
 export { default as NavBar } from './NavBar';
 export { default as StripeForm } from './StripeForm';
-
