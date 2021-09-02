@@ -13,17 +13,17 @@ server.use(morgan("dev"));
 server.use(express.json());
 
 // here's our static files
-const path = require("path");
-server.use(express.static(path.join(__dirname, "build")));
+/*const path = require("path");
+server.use(express.static(path.join(__dirname, "build")));*/
 // here's our API
 const apiRouter = require("./routes");
 server.use("/api", apiRouter);
 
 // by default serve up the react app if we don't recognize the routes
 
-server.use((req, res, next) => {
+/*server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+});*/
 
 // bring in the DB connection
 const client = require("./db/client");
@@ -32,13 +32,14 @@ const client = require("./db/client");
 const PORT = process.env.PORT || 5000;
 
 // 404 handler
+/*
 server.get("*", (req, res) => {
   res.status(404).send({
     error: "404 - Not Found",
     message: "No route found for the requested URL",
   });
 });
-
+*/
 // error handling middleware
 server.use((error, req, res, next) => {
   console.error("SERVER ERROR: ", error);
