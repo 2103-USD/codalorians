@@ -3,12 +3,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { registerUser } from "./api/index";
 import { storeCurrentUser } from "./auth/auth";
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Register = ({ handleClose, setCurrentUser }) => {
+const Register = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [registerMessage, setRegisterMessage] = useState(null);
-
+  
+  const {setCurrentUser} = props;
   const messageDiv = registerMessage ? (
     <div className="message">{registerMessage}</div>
   ) : (
@@ -23,10 +26,10 @@ const Register = ({ handleClose, setCurrentUser }) => {
     event.preventDefault();
     setRegisterMessage(null);
     try {
-      const result = await registerUser(username, password);
+      /*const result = await registerUser(username, password);
       storeCurrentUser(result.user);
       setCurrentUser(result.user);
-      setRegisterMessage(result.message);
+      setRegisterMessage(result.message);*/
     } catch (error) {
       setRegisterMessage(
         "Registration unsuccessful. Duplicate Username, please choose another."
@@ -35,12 +38,14 @@ const Register = ({ handleClose, setCurrentUser }) => {
   }
 
   return (
-    <div className="Register">
+    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal.Header closeButton onClick={props.toggleShowRegister}>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Register
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
       <Form onSubmit={handleSubmit}>
-        <span className="close-icon" onClick={handleClose}>
-          {" "}
-          x{" "}
-        </span>
         <Form.Group size="lg" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
@@ -63,7 +68,8 @@ const Register = ({ handleClose, setCurrentUser }) => {
           REGISTER
         </Button>
       </Form>
-    </div>
+      </Modal.Body>
+    </Modal>
   );
 };
 

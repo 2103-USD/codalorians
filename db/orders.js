@@ -9,7 +9,9 @@ async function getOrderById(id) {
             SELECT *
             FROM orders
             WHERE id=$1;
-        `, [id]);
+        `,
+      [id]
+    );
     return order;
   } catch (error) {
     throw error;
@@ -167,4 +169,3 @@ module.exports = {
   getCartByUser,
   createOrder,
 };
-
