@@ -23,7 +23,6 @@ const App = () => {
     setCurrentUser(user);
   }, []);
 
-
   return (
     <Router>
     <div className="App">
