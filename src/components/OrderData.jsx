@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const OrderData = ({ id }) => {
+const OrderData = ({ order }) => {
+  const [currentOrder, setCurrentOrder] = useState({});
+
   //const [singleOrder, setSingleOrder] = useState("");
 
   /*

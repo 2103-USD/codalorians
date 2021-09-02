@@ -6,5 +6,3 @@ export { default as OrderData} from './OrderData';
 export { default as Product} from './Product';
 export { default as Register} from './Register';
 export { default as UserData} from './UserData';
-export { default as NavBar } from './NavBar';
-export { default as StripeForm } from './StripeForm';

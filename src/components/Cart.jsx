@@ -7,6 +7,11 @@ import StripeCheckout from "react-stripe-checkout";
 const STRIPE_KEY = process.env.STRIPE_KEY;
 
 const Cart = ({ currentUser }) => {
+  const { id, username } = currentUser;
+  const [cart, setCart] = useState([]);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [order, setOrder] = useState({});
+
   const [ordersList, setOrdersList] = useState([]);
   const [showPay, setShowPay] = useState([]);
 
@@ -41,8 +46,8 @@ const Cart = ({ currentUser }) => {
 
   return ordersList.length > 0 ? (
     <div>
-      <h2>Your cart currently has {ordersList.length} items</h2>
-      {ordersList.map((order, index) => {
+      <h2>Your cart currently has {cart.length} items</h2>
+      {cart.map((order, index) => {
         return <OrderData id={order.id} />;
       })}
     </div>
