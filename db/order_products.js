@@ -1,4 +1,5 @@
 const client = require("./client");
+// const { getOrderById } = require("./orders");
 
 async function getOrderProductById(id) {
   try {
@@ -18,28 +19,66 @@ async function getOrderProductById(id) {
   }
 }
 
-//still needs work before this function is completed
-async function addProductToOrder({ orderId, routineId, price, quantity }) {
+//test to make sure it functions properly
+async function addProductToOrder({ orderId, productId, price, quantity }) {
   try {
     const {
-      rows: [orderProduct],
+      rows: [prevOrderProduct],
     } = await client.query(
       `
-        INSERT INTO order_products("orderId", "routineId", price, quantity)
+      SELECT * 
+      FROM order_products
+      WHERE "orderId" = $1 and "productId" = $2;
+    `,
+      [orderId, productId]
+    );
+    console.log(prevOrderProduct);
+    const { quantity: prevQuantity, price: prevPrice } = prevOrderProduct;
+    if (orderProduct) {
+      const {
+        rows: [orderProduct],
+      } = await client.query(
+        `
+        UPDATE order_products SET price = $1, quantity = $2, (price, quantity)
+        WHERE "orderId" = $3 and "productId" = $4
+        RETURNING *;
+      `,
+        [price + prevPrice, quantity + prevQuantity]
+      );
+      return orderProduct;
+    } else {
+      const {
+        rows: [orderProduct],
+      } = await client.query(
+        `
+        INSERT INTO order_products("orderId", "productId", price, quantity)
         VALUES ($1, $2, $3, $4)
         RETURNING *;
       `,
-      [orderId, routineId, price, quantity]
-    );
-
-    return orderProduct;
+        [orderId, productId, price, quantity]
+      );
+      return orderProduct;
+    }
   } catch (error) {
     throw error;
   }
 }
 
-//needs work prior to completion
-async function updateOrderProduct() {}
+//Needs testing to ensure proper functionality
+async function updateOrderProduct({ id, price, quantity }) {
+  const {
+    rows: [orderProduct],
+  } = await client.query(
+    `
+    UPDATE order_products(price, quantity)
+    SET price = $1, quantity = $2
+    WHERE id = $3
+    RETURNING *;
+  `,
+    [price, quantity, id]
+  );
+  return orderProduct;
+}
 
 async function destroyOrderProduct(id) {
   try {
