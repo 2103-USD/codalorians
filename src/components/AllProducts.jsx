@@ -8,7 +8,7 @@ const AllProducts = () => {
   useEffect(
     () =>
       getAllProducts()
-        .then(setProductList)
+        .then((data) => setProductList(data))
         .catch((error) => console.error(error)),
     []
   );
