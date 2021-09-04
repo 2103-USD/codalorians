@@ -8,7 +8,7 @@ const AllProducts = () => {
   useEffect(
     () =>
       getAllProducts()
-        .then(setProductList)
+        .then((data) => setProductList(data))
         .catch((error) => console.error(error)),
     []
   );
@@ -26,6 +26,7 @@ const AllProducts = () => {
             imageurl={product.imageurl}
             instock={product.instock}
             category={product.category}
+            key={`productId${product.id}`}
           />
         );
       })}
