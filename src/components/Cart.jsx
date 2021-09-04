@@ -7,7 +7,7 @@ import StripeCheckout from "react-stripe-checkout";
 const STRIPE_KEY = process.env.STRIPE_KEY;
 
 const Cart = ({ currentUser }) => {
-  // const { id, username } = currentUser;
+  //const { id, username } = currentUser;
   const [cart, setCart] = useState([]);
   const [addedToCart, setAddedToCart] = useState(false);
   const [order, setOrder] = useState({});
