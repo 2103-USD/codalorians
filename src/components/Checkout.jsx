@@ -3,18 +3,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import OrderData from "./OrderData";
 import UserData from "./UserData";
 
-const Checkout = ({ user }) => {
+const Checkout = ({ currentUser }) => {
   return (
     <>
-      <h1>{user} checkout</h1>
-      <Router>
-        <Route>
-          <UserData />
-        </Route>
-        <Route>
-          <OrderData />
-        </Route>
-      </Router>
+      <h1> Checkout</h1>
+      <UserData currentUser={currentUser} />
+      <OrderData />
       <button>Complete Order</button>
       <button>Cancel Order</button>
     </>

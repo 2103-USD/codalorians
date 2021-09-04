@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Checkout from "./Checkout";
 import { getOrders } from "./api";
 import Button from "react-bootstrap/Button";
 import OrderData from "./OrderData";
@@ -7,7 +9,7 @@ import StripeCheckout from "react-stripe-checkout";
 const STRIPE_KEY = process.env.STRIPE_KEY;
 
 const Cart = ({ currentUser }) => {
-  //const { id, username } = currentUser;
+  const { id, username } = currentUser;
   const [cart, setCart] = useState([]);
   const [addedToCart, setAddedToCart] = useState(false);
   const [order, setOrder] = useState({});
@@ -55,6 +57,11 @@ const Cart = ({ currentUser }) => {
       <StripeCheckout stripeKey={STRIPE_KEY}>
         <Button>PAY</Button>
       </StripeCheckout>
+      <Route>
+        <Checkout currentUser={currentUser}>
+          Checkout {username}'s order
+        </Checkout>
+      </Route>
       {/*UNDER CONSTRUCTION*/}
       {/*<Button toggleShowPay={toggleShowPay} classname="btn btn-primary">Pay</Button>*/}
       {/*showPay && <StripeForm token={onToken} stripeKey={STRIPE_KEY} />*/}
