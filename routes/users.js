@@ -12,8 +12,16 @@ const {
   getUserByUsername,
 } = require("../db");
 
-usersRouter.post("/users/register", async (req, res, next) => {
-  const { username, password } = req.body;
+usersRouter.post("/register", async (req, res, next) => {
+  const {
+    firstname,
+    lastname,
+    email,
+    imageurl,
+    username,
+    password,
+    isadmin,
+  } = req.body;
 
   try {
     const _user = await getUserByUsername(username);
@@ -32,11 +40,16 @@ usersRouter.post("/users/register", async (req, res, next) => {
       });
     }
     const user = await createUser({
+      firstname,
+      lastname,
+      email,
+      imageurl,
       username,
       password,
+      isadmin
     });
     const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, {
-      expiresIn: "1 week",
+      expiresIn: "1w",
     });
 
     res.send({
@@ -49,7 +62,7 @@ usersRouter.post("/users/register", async (req, res, next) => {
   }
 });
 
-usersRouter.post("/users/login", async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -95,6 +108,5 @@ usersRouter.get("/users/me", async (req, res, next) => {
     next({ name, message });
   }
 });
-
 
 module.exports = usersRouter;
