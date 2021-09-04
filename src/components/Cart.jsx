@@ -15,7 +15,6 @@ const Cart = ({ currentUser }) => {
   const [ordersList, setOrdersList] = useState([]);
   const [showPay, setShowPay] = useState([]);
 
-
   /*
   useEffect(
     (id) =>
@@ -53,10 +52,12 @@ const Cart = ({ currentUser }) => {
   ) : (
     <div>
       <h2>Your Cart is Currently Empty</h2>
-        <StripeCheckout stripeKey={STRIPE_KEY} ><Button>PAY</Button></StripeCheckout>
-        {/*UNDER CONSTRUCTION*/}
-        {/*<Button toggleShowPay={toggleShowPay} classname="btn btn-primary">Pay</Button>*/}
-        {/*showPay && <StripeForm token={onToken} stripeKey={STRIPE_KEY} />*/}
+      <StripeCheckout stripeKey={STRIPE_KEY}>
+        <Button>PAY</Button>
+      </StripeCheckout>
+      {/*UNDER CONSTRUCTION*/}
+      {/*<Button toggleShowPay={toggleShowPay} classname="btn btn-primary">Pay</Button>*/}
+      {/*showPay && <StripeForm token={onToken} stripeKey={STRIPE_KEY} />*/}
     </div>
   );
 };
