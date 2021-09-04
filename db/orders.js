@@ -161,6 +161,59 @@ async function createOrder({ status, userId }) {
   }
 }
 
+async function updateOrder( fields = {}) {
+  const { id } = fields;
+  const setString = Object.keys(fields)
+    .map ((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+
+    if (setString.length === 0 ) {
+      return "";
+    }
+
+  try { 
+    const {
+      rows: [updatedOrder],
+    } = await client.query(`
+      UPDATE routines
+      SET ${setString}
+      WHERE id=${id}
+      RETURNING *;
+    `,
+    Object.values(fields)
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function completeOrder({id}) {
+  try {
+    const { rows: [order] } = await client.query(`
+    UPDATE orders
+    SET status="completed"
+    WHERE id=$1
+    RETURNING *;
+    `, [id]);
+    return order
+  } catch (error) {
+      console.error(error)
+  }
+}
+
+async function cancelOrder({id}) {
+  try {
+    const { rows: [order] } = await client.query(`
+      UPDATE orders
+      SET status="cancelled"
+      WHERE id=$1
+      RETURNING *;
+    `, [id]);
+  } catch (error) {
+      console.error(error)
+  }
+}
+
 module.exports = {
   getOrderById,
   getAllOrders,
@@ -168,4 +221,7 @@ module.exports = {
   getOrdersByProduct,
   getCartByUser,
   createOrder,
+  completeOrder,
+  cancelOrder,
+  updateOrder
 };
