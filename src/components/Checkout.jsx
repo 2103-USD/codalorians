@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import OrderData from "./OrderData";
 import UserData from "./UserData";
 
-const Checkout = () => {
+const Checkout = ({ user }) => {
   return (
     <>
+      <h1>{user} checkout</h1>
       <Router>
         <Route>
           <UserData />

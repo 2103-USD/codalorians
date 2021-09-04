@@ -7,15 +7,13 @@ import StripeCheckout from "react-stripe-checkout";
 const STRIPE_KEY = process.env.STRIPE_KEY;
 
 const Cart = ({ currentUser }) => {
-  const { id, username } = currentUser;
+  //const { id, username } = currentUser;
   const [cart, setCart] = useState([]);
   const [addedToCart, setAddedToCart] = useState(false);
   const [order, setOrder] = useState({});
 
   const [ordersList, setOrdersList] = useState([]);
   const [showPay, setShowPay] = useState([]);
-
-  //const { id, username } = currentUser;
 
   /*
   useEffect(
@@ -54,10 +52,12 @@ const Cart = ({ currentUser }) => {
   ) : (
     <div>
       <h2>Your Cart is Currently Empty</h2>
-        <StripeCheckout stripeKey={STRIPE_KEY} ><Button>PAY</Button></StripeCheckout>
-        {/*UNDER CONSTRUCTION*/}
-        {/*<Button toggleShowPay={toggleShowPay} classname="btn btn-primary">Pay</Button>*/}
-        {/*showPay && <StripeForm token={onToken} stripeKey={STRIPE_KEY} />*/}
+      <StripeCheckout stripeKey={STRIPE_KEY}>
+        <Button>PAY</Button>
+      </StripeCheckout>
+      {/*UNDER CONSTRUCTION*/}
+      {/*<Button toggleShowPay={toggleShowPay} classname="btn btn-primary">Pay</Button>*/}
+      {/*showPay && <StripeForm token={onToken} stripeKey={STRIPE_KEY} />*/}
     </div>
   );
 };

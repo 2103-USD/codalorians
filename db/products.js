@@ -24,7 +24,7 @@ async function getAllProducts() {
             SELECT *
             FROM products;
         `);
-    console.log("These are the products from DB:", rows)
+    console.log("These are the products from DB:", rows);
     return rows;
   } catch (error) {
     throw error;
@@ -57,8 +57,58 @@ async function createProduct({
   }
 }
 
+// needs eyes on it to make sure when status is completed it won't be deleted
+async function destroyProduct({ id }) {
+  try {
+    if (status) {
+      const {
+        rows: [product],
+      } = await client.query(
+        `
+      DELETE FROM products
+      WHERE id=$1
+      RETURNING *
+    `,
+        [id]
+      );
+
+      await client.query(
+        `
+      DELETE FROM order_products
+      WHERE "productId"=$1;
+    `,
+        [id]
+      );
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+//needs eyes on it before being pushed
+async function updateProduct({ id, name, description, price }) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+      UPDATE products
+      SET name = $1, desciption = $2, price = $3
+      WHERE id = ${id}
+      RETURNING *;
+    `,
+      [name, description, price]
+    );
+    return product;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 module.exports = {
   getProductById,
   getAllProducts,
   createProduct,
+  destroyProduct,
+  updateProduct,
 };
