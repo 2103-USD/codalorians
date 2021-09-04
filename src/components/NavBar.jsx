@@ -11,7 +11,7 @@ import Container from "react-bootstrap/Container";
 import logo from "./images/image.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const NavBar = () => {
+const NavBar = ({handleLogin, handleLogout, currentUser}) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -20,13 +20,40 @@ const NavBar = () => {
   }
 
   function toggleShowRegister() {
-    console.log("clicked")
     setShowRegister(!showRegister);
   }
 
-  return (
-    <>
+  return ( 
+    <> 
       <Navbar bg="dark" variant="dark">
+      {currentUser ? (<>
+          <Container>
+            <Navbar.Brand href="#home">
+              <img
+                src={logo}
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+                alt="logo"
+              />
+              <Nav className="me-auto">
+                <Nav.Link href="/AllProducts">Home</Nav.Link>
+                <Nav.Link href="/AllProducts">Products</Nav.Link>
+                <Nav.Link href="/Cart">Cart</Nav.Link>
+                <Nav.Link href="/UserData">User Data</Nav.Link>
+                <InputGroup>
+                  <InputGroup.Text>Search</InputGroup.Text>
+                  <FormControl as="textarea" aria-label="With textarea" />
+                </InputGroup>
+                <ButtonGroup aria-label="Basic example">
+                  <Button variant="secondary" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </ButtonGroup>
+              </Nav>
+            </Navbar.Brand>
+          </Container>
+          </>) : ( <>
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -48,16 +75,16 @@ const NavBar = () => {
                 <Button variant="secondary" onClick={toggleShowLogin}>
                   Login
                 </Button>
-                {showLogin && <Login toggleShowLogin={toggleShowLogin} show={showLogin} />}
+                {showLogin && <Login toggleShowLogin={toggleShowLogin} handleLogin={handleLogin} show={showLogin} />}
                 <Button variant="primary" onClick={toggleShowRegister}>Register</Button>
-                {showRegister && <Register toggleShowRegister={toggleShowRegister} show={showRegister} />}
+                {showRegister && <Register toggleShowRegister={toggleShowRegister} handleLogin={handleLogin} show={showRegister} />}
               </ButtonGroup>
             </Nav>
           </Navbar.Brand>
         </Container>
-      </Navbar>
-    </>
-  );
+    </>) }
+        </Navbar>
+        </>);
 };
 
 export default NavBar;

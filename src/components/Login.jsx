@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { loginUser } from "./api";
 import { storeCurrentUser } from "./auth/auth";
-import { LoginUser } from "./api/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState(null);
-  const { setCurrentUser } = props;
-
+  const { setCurrentUser, handleLogin } = props;
 
   function validateForm() {
     return username.length > 0 && password.length > 0;
@@ -27,28 +26,25 @@ const Login = (props) => {
     event.preventDefault();
     setLoginMessage(null);
     try {
-     /* const result = await loginUser(username, password); 
+      const result = await loginUser(username, password);
       if (result.user) {
         handleLogin(result);
         setLoginMessage(result.message);
-      }*/
+      }
     } catch (error) {
       setLoginMessage("Username or Password Invalid.");
     }
   }
 
-
-  async function handleLogin(result) {
-    await storeCurrentUser(result.user);
-    await setCurrentUser(result.user);
-  }
-
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Modal.Header closeButton onClick={props.toggleShowLogin}>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Login
-        </Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
