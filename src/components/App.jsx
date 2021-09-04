@@ -8,9 +8,11 @@ import {
 
 import { getAllProducts, getSomething } from "./api/index";
 import { getCurrentUser } from "./auth/auth";
+import NavBar from "./NavBar";
+import Cart from "./Cart";
 import AllProducts from "./AllProducts";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Modal from "./Modal";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -21,16 +23,20 @@ const App = () => {
     setCurrentUser(user);
   }, []);
 
-
   return (
     <Router>
     <div className="App">
-      <Modal currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      <AllProducts />
+      <NavBar />
       <h1>Hello, World!</h1>
       <h2>{message}</h2>
+      <Route path="/AllProducts">
+        <AllProducts/>
+      </Route>
+      <Route path="/Cart">
+        <Cart currentUser={currentUser}/>
+      </Route>
     </div>
-    </Router>
+   </Router>
   );
 };
 
