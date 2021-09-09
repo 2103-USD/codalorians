@@ -2,7 +2,7 @@ const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { requireUserOrAdmin } = require("./utils");
+const { requireAdmin, requireUserOrAdmin } = require("./utils");
 
 const {
   createUser,
@@ -10,6 +10,7 @@ const {
   getAllUsers,
   getUserById,
   getUserByUsername,
+  updateUser,
 } = require("../db");
 
 usersRouter.post("/register", async (req, res, next) => {
@@ -103,6 +104,49 @@ usersRouter.get("/users/me", async (req, res, next) => {
         name: "NotLoggedIn",
         message: "You must log in first",
       });
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+//requires an admin
+usersRouter.get("/users", requireAdmin, async (req, res, next) => {
+  try {
+    const users = await getAllUsers();
+    res.send(users);
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.patch("/users/:userId", requireAdmin, async (req, res, next) => {
+  const { userId: id } = req.params;
+  const { firstname, lastname, email, isAdmin } = req.body;
+
+  try {
+    const userToUpdate = await getUserById(userId);
+    if (userToUpdate === undefined) {
+      next({
+        name: "UserNotFound",
+        message: `There is no user with id #${id}`,
+      });
+    } else {
+      const updatedUser = await updateUser({
+        id,
+        firstname,
+        lastname,
+        email,
+        isAdmin,
+      });
+      if (updatedUser !== undefined) {
+        res.send(updatedUser);
+      } else {
+        next({
+          name: "FailedUserUpdate",
+          message: "User was not updated",
+        });
+      }
     }
   } catch ({ name, message }) {
     next({ name, message });
