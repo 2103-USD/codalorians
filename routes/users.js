@@ -2,7 +2,7 @@ const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { requireAdmin, requireUserOrAdmin } = require("./utils");
+const { requireAdmin, requireUser} = require("./utils");
 
 const {
   createUser,
@@ -14,15 +14,7 @@ const {
 } = require("../db");
 
 usersRouter.post("/register", async (req, res, next) => {
-  const {
-    firstname,
-    lastname,
-    email,
-    imageurl,
-    username,
-    password,
-    isadmin,
-  } = req.body;
+  const { firstname, lastname, email, username, password, isadmin } = req.body;
 
   try {
     const _user = await getUserByUsername(username);
@@ -37,17 +29,16 @@ usersRouter.post("/register", async (req, res, next) => {
       res.status(401);
       return next({
         name: "PasswordLengthError",
-        message: "Password needs to be at least 8 character.",
+        message: "Password needs to be at least 8 characters.",
       });
     }
     const user = await createUser({
       firstname,
       lastname,
       email,
-      imageurl,
       username,
       password,
-      isadmin
+      isadmin,
     });
     const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, {
       expiresIn: "1w",
@@ -92,7 +83,7 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/users/me", async (req, res, next) => {
+usersRouter.get("/me", async (req, res, next) => {
   try {
     if (req.user) {
       const { id } = req.user;
@@ -110,15 +101,18 @@ usersRouter.get("/users/me", async (req, res, next) => {
   }
 });
 
-//requires an admin
-usersRouter.get("/users", requireAdmin, async (req, res, next) => {
+
+
+usersRouter.get("/", async (req, res, next) => {
   try {
     const users = await getAllUsers();
-    res.send(users);
+    return users;
+==
   } catch (error) {
     next(error);
   }
 });
+
 
 usersRouter.patch("/users/:userId", requireAdmin, async (req, res, next) => {
   const { userId: id } = req.params;

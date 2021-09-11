@@ -7,6 +7,11 @@ export function getCurrentUser() {
   return user;
 }
 
+export function getToken() {
+  const token = localStorage.getItem("token");
+  return token;
+}
+
 export function clearCurrentUser() {
   localStorage.removeItem("currentUser");
 }

@@ -14,14 +14,15 @@ const RemoveFromCartButton = ({ setCart }) => {
 
   return (
     <Button
-      block
-      sz="sm"
+      variant="danger"
+      size="sm"
       name="RemoveFromCart"
       type="Button"
       value="RemoveFromCart"
+      className="m-1"
       onClick={handleRemoveFromCart}
     >
-      Remove From Cart
+      Remove
     </Button>
   );
 };
