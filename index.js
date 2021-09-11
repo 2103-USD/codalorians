@@ -1,46 +1,32 @@
 // This is the Web Server
 require("dotenv").config();
+const PORT = process.env.PORT || 5000;
 const express = require("express");
 const server = express();
-
 const cors = require("cors");
-server.use(cors());
-// create logs for everything
 const morgan = require("morgan");
-server.use(morgan("dev"));
-
-// handle application/json requests
-server.use(express.json());
-
-// here's our static files
 const path = require("path");
-server.use(express.static(path.join(__dirname, "build")));
-
-// here's our API
 const apiRouter = require("./routes");
-server.use("/api", apiRouter);
+const client = require("./db/client");
 
-// by default serve up the react app if we don't recognize the routes
+
+
+server.use(morgan("dev"));
+server.use(cors());
+server.use(express.json());
+server.use(express.static(path.join(__dirname, "build")));
+server.use("/api", apiRouter);
 
 server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// bring in the DB connection
-const client = require("./db/client");
-
-// connect to the server
-const PORT = process.env.PORT || 5000;
-
-// 404 handler
 server.get("*", (req, res) => {
   res.status(404).send({
     error: "404 - Not Found",
     message: "No route found for the requested URL",
   });
 });
-
-// error handling middleware
 
 server.use((error, req, res, next) => {
   console.error("SERVER ERROR: ", error);

@@ -31,10 +31,9 @@ async function dropTables() {
 
 async function buildTables() {
   try {
-    // build tables in correct order
     console.log("CREATING TABLES");
     await client.query(`
-    CREATE TABLE products (
+    CREATE TABLE products(
       id           SERIAL PRIMARY KEY,
       name         VARCHAR(255) NOT NULL,
       artist        VARCHAR(255) NOT NULL,
@@ -56,14 +55,14 @@ async function buildTables() {
       isadmin     BOOLEAN NOT NULL DEFAULT false
       );
 
-    CREATE TABLE orders (
+    CREATE TABLE orders(
       id          SERIAL PRIMARY KEY,
       status      VARCHAR(255) DEFAULT 'created',
       userid      INTEGER REFERENCES users(id),
       created     TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
       );
 
-    CREATE TABLE order_products (
+    CREATE TABLE order_products(
       id          SERIAL PRIMARY KEY,
       productid   INTEGER REFERENCES products(id),
       orderid     INTEGER REFERENCES orders(id),
@@ -71,18 +70,18 @@ async function buildTables() {
       quantity    INTEGER NOT NULL DEFAULT (0)
       );
     
-    CREATE TABLE reviews (
+    CREATE TABLE reviews(
       id          SERIAL PRIMARY KEY,
-      review      TEXT NOT NULL,
-      rating      INTEGER NOT NULL DEFAULT (0),
-      productid   INTEGER REFERENCES products(id) NOT NULL, 
       userid      INTEGER REFERENCES users(id) NOT NULL,
+      productid   INTEGER REFERENCES products(id) NOT NULL,
+      rating      INTEGER NOT NULL DEFAULT (0), 
+      review      TEXT NOT NULL,
       created     TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
     );
     `);
     console.log("TABLES BUILT");
-  } catch (Error) {
-    console.error(Error);
+  } catch (error) {
+    throw error
   }
 }
 
@@ -133,26 +132,26 @@ async function createInitialOrderProducts() {
     console.log("These are the order products", orderProducts);
     console.log("FINISHED CREATING ORDER PRODUCTS");
   } catch (error) {
-    console.error(error);
+    throw(error)
   }
 }
+
 /*
 async function createInitialReviews() {
   try {
     console.log("CREATING REVIEWS");
     const reviews = await Promise.all(
-      seedReviews.map((review) => {
-        createReview(review);
+      seedReviews.map((newReview) => {
+        createReview(newReview);
       })
     );
     console.log("THESE ARE THE REVIEWS", reviews);
     console.log("FINISHED CREATING REVIEWS");
-
   } catch (error) {
     throw error;
   }
-}
-*/
+}*/
+
 async function rebuildDB() {
   try {
     client.connect();
@@ -163,9 +162,9 @@ async function rebuildDB() {
     await createInitialOrders();
     await createInitialOrderProducts();
     //await createInitialReviews();
-  } catch (Error) {
+  } catch (error) {
     console.error("Error during rebuild DB");
-    throw Error;
+
   }
 }
 

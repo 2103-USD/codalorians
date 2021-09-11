@@ -14,8 +14,8 @@ const RemoveFromCartButton = ({ setCart }) => {
 
   return (
     <Button
-      block
-      sz="sm"
+      variant="danger"
+      size="sm"
       name="RemoveFromCart"
       type="Button"
       value="RemoveFromCart"

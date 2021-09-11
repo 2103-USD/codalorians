@@ -1,11 +1,128 @@
 {
   "seedProducts": [
     {
+      "name": "Forever And Ever x Finity ",
+      "artist": "New Found Glory",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2739b5845d633286df570c9ce81",
+      "instock": true,
+      "category": "Punk"
+    },
+    {
+      "name": "Dreamland",
+      "artist": "Glass Animals",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273712701c5e263efc8726b1464",
+      "instock": true,
+      "category": "Pop"
+    },
+    {
+      "name": "Die For It (ft. Nas)",
+      "artist": "The Weekend",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2736c1f7876d7322a196d9880ca",
+      "instock": true,
+      "category": "Pop"
+    },
+    {
+      "name": "Planet Her",
+      "artist": "Doja Cat",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2734c767857a41ec9da231adb6a",
+      "instock": true,
+      "category": "Rap"
+    },
+    {
+      "name": "Changes",
+      "artist": "Justin Bieber",
+      "description": "2020",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2737fe4a82a08c4f0decbeddbc6",
+      "instock": true,
+      "category": "Pop"
+    },
+    {
+      "name": "Abbey Road",
+      "artist": "The Beatles",
+      "description": "1969",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Rearview Town",
+      "artist": "Jason Aldean",
+      "description": "2018",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27397696e218e92fa4c2640c6ee",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "Dig Your Roots",
+      "artist": "Florida Georgia Line",
+      "description": "2016",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27305f4943d0f3a292234e74ab8",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "Stoney",
+      "artist": "Post Malone",
+      "description": "2016",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27355404f712deb84d0650a4b41",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
+      "name": "DAMN.",
+      "artist": "Kendrick Lamar",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2738b52c6b9bc4e43d873869699",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "Dangerous",
+      "artist": "Morgan Wallen",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273287f7215b7fadb7d54e4fa8d",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "4:44",
+      "artist": "JAY-Z",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2737513c4956ea5552caf02eab6",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
+      "name": "Certified Lover Boy",
+      "artist": "Drake",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273bd6587e9a32c161be8c71100",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
       "name": "What's Going On",
       "artist": "Marvin Gaye",
       "description": "1971",
       "price": 20.0,
-      "imageurl": "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-001-Marvin-Gaye-WHATS-GOING-ON.jpg?w=1000",
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273b36949bee43217351961ffbc",
       "instock": true,
       "category": "R&B"
     },
@@ -14,7 +131,7 @@
       "artist": "The Beach Boys",
       "description": "1966",
       "price": 20.0,
-      "imageurl": "https://www.udiscovermusic.com/wp-content/uploads/2017/05/The-Beach-Boys-Pet-Sounds.jpg",
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273bde8dfd1922129f3d9e3732f",
       "instock": true,
       "category": "Surf Rock"
     },
@@ -23,7 +140,7 @@
       "artist": "Joni Mitchell",
       "description": "1971",
       "price": 20.0,
-      "imageurl": "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-003-JoniMitchell-BLUE-HR.jpg?w=1000",
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273e9f77be85457110ebf304da7",
       "instock": true,
       "category": "Folk"
     },
@@ -32,7 +149,7 @@
       "artist": "Stevie Wonder",
       "description": "1976",
       "price": 20.0,
-      "imageurl": "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-004-Stevie-Wonder-SONGS-IN-THE-KEY-OF-LIFE.jpg?w=1000",
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50",
       "instock": true,
       "category": "Soul"
     },
@@ -41,7 +158,7 @@
       "artist": "Daft Punk",
       "description": "2020",
       "price": 20.0,
-      "imageurl": "https://media.senscritique.com/media/000019257218/source_big/Deep_Cuts_Compilation.jpg",
+      "imageurl": "https://i.scdn.co/image/ab67706c0000bebb1547f05ef26902754b8738c2",
       "instock": true,
       "category": "Electronica"
     },
@@ -61,7 +178,7 @@
       "price": 20.0,
       "imageurl": "https://i.scdn.co/image/ab67616d0000b273045fc920ecf4f8094888ec26",
       "instock": true,
-      "category":"Hip Hop"
+      "category": "Hip-Hop"
     },
     {
       "name": "Transatlanticism",
@@ -88,8 +205,7 @@
       "price": 20.0,
       "imageurl": "https://i.scdn.co/image/ab67616d0000b2737aede4855f6d0d738012e2e5",
       "instock": true,
-      "category":"R&B"
-
+      "category": "R&B"
     },
     {
       "name": "Ten",
@@ -159,34 +275,34 @@
   ],
   "seedReviews": [
     {
-      "review": "Good board",
-      "rating": 5,
-      "productid": 1,
-      "userid": 2
+      "userid": "1",
+      "productid": "1",
+      "rating": "5",
+      "review": "Great album"
     },
     {
-      "review": "Wouldn't buy this again",
-      "rating": 5,
-      "productid": 3,
-      "userid": 2
+      "userid": "2",
+      "productid": "3",
+      "rating": "5",
+      "review": "How have I never listened to this album"
     },
     {
-      "review": "Bought it, it works.",
-      "rating": 4,
-      "productid": 4,
-      "userid": 2
+      "userid": "3",
+      "productid": "4",
+      "rating": "4",
+      "review": "Just couldnt get in to it"
     },
     {
-      "review": "Not my favorite board.",
-      "rating": 2,
-      "productid": 1,
-      "userid": 2
+      "userid": "3",
+      "productid": "1",
+      "rating": "2",
+      "review": "Whatever happened to good music"
     },
     {
-      "review": "Broke after the first kickflip.",
-      "rating": 2,
-      "productid": 2,
-      "userid": 3
+      "userid": "4",
+      "productid": "2",
+      "rating": "2",
+      "review": "Can I get my money back"
     }
   ],
   "seedOrders": [

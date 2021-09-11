@@ -1,28 +1,23 @@
 * {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
 }
 body {
   width: 100%;
   height: 100%;
-}
-
-main {
-  display: flex;
-  background: #fafafc;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  background-image: no-repeat;
 }
 
 .sidebar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-self: flex-start;
   width: 300px;
   background-image: linear-gradient(#fcbd78, #ff65c3);
   background-size: 200%;
   background-position: 0 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -44,7 +39,7 @@ main {
   width: 100%;
   height: 100%;
   height: 4rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   border: none;
@@ -59,45 +54,15 @@ main {
   transition: 300ms ease;
   cursor: pointer;
 }
+
+.link-container {
+  margin-top: 120px;
+}
+
 .sidebar__toggle:focus {
   outline: none;
 }
 
-.shape {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  background: linear-gradient(#ff7dd5 80%, transparent);
-  height: 200px;
-  border-radius: 100%;
-  margin-left: -100px;
-  margin-top: -20px;
-  z-index: -1;
-  opacity: 0;
-  transform: scale(0.4) translateY(-400px) translateX(300px);
-  margin-left: 0;
-  margin-top: 0;
-  transition: 400ms ease;
-}
-.shape:nth-child(2) {
-  background: linear-gradient(#fcbd78 80%, transparent);
-  margin-top: 70px;
-  margin-left: 50px;
-  transform: scale(0.4) translateY(-400px);
-  margin-top: 0;
-}
-.sidebar--expanded .shape {
-  animation: float 6s infinite alternate;
-  margin-left: -100px;
-  margin-top: -20px;
-  opacity: 0.4;
-  transform: scale(1) translateY(0);
-}
-.sidebar--expanded .shape:nth-child(2) {
-  animation: float 20s infinite alternate;
-  transform: scale(1) translateY(100px) translateX(170px);
-}
 @keyframes float {
   20% {
     top: 0;

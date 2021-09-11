@@ -6,15 +6,15 @@ async function createReview({ review, rating, productid, userid }) {
       rows: [newReview],
     } = await client.query(
       `
-      INSERT INTO reviews(review, rating, productid, userid)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *;
-            `,
-      [review, rating, productid, userid]
+      INSERT INTO reviews(userid, productid, rating, review)
+      VALUES($1, $2, $3, $4)
+      RETURNING *;`,
+      [userid, productid, rating, review ]
     );
+    console.log(newReview)
     return newReview;
   } catch (error) {
-    throw(error);
+    console.error(error)
   }
 }
 

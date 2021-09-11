@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Nav,
   Navbar,
@@ -30,14 +31,16 @@ const NavBar = ({ handleLogin, handleLogout, currentUser, handleRegister }) => {
   }
 
   return (
-    <Navbar bg="dark" variant="dark" style={{ zIndex: "2", height: "110px" }}>
+    <Navbar bg="dark" variant="dark" style={{ zIndex: "2", display: "flex", height: "110px" }}>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
       <Navbar.Brand>
         {" "}
         <img
           src={logo}
           width="150px"
           height="150px"
-          margin="0px"
+          className="me-auto"
           padding="5px"
         />
       </Navbar.Brand>
@@ -45,65 +48,64 @@ const NavBar = ({ handleLogin, handleLogout, currentUser, handleRegister }) => {
       {currentUser ? (
         <>
           <Nav>
-            <Nav.Link href="/AllProducts">
-              <img src={Home} width="40px" height="40px" />
+            <Nav.Link as={Link} to="/">
+              <img
+                src={Home}
+                style={{ marginRight: "20px" }}
+                width="40px"
+                height="40px"
+              />
             </Nav.Link>
           </Nav>
           <SearchBar />
-          <ButtonGroup>
-            <Button variant="secondary" className="mr-2" onClick={handleLogout}>
-              Logout
-            </Button>
-          </ButtonGroup>
-          <Nav.Link href="/Cart">
+          <Button variant="danger" size="lg" className="mx-5" onClick={handleLogout}>
+            Logout
+          </Button>
+          <Nav.Link as={Link} to="/Cart">
             <img src={Cart} width="50px" height="50px" />
           </Nav.Link>
         </>
       ) : (
         <>
           <Nav>
-            <Nav.Link href="/AllProducts">
-              <img src={Home} width="40px" height="40px" />
+            <Nav.Link as={Link} to="/">
+              <img
+                src={Home}
+                style={{ marginRight: "20px" }}
+                width="40px"
+                height="40px"
+              />
             </Nav.Link>
           </Nav>
           <SearchBar />
           <Nav>
-            <ButtonGroup>
-              <Button
-                variant="secondary"
-                className="mr-2"
-                onClick={toggleShowLogin}
-              >
-                Login
-              </Button>
-              {showLogin && (
-                <Login
-                  toggleShowLogin={toggleShowLogin}
-                  handleLogin={handleLogin}
-                  show={showLogin}
-                />
-              )}
-              <Button
-                variant="primary"
-                className="mr-2"
-                onClick={toggleShowRegister}
-              >
-                Register
-              </Button>
-              {showRegister && (
-                <Register
-                  toggleShowRegister={toggleShowRegister}
-                  handleRegister={handleRegister}
-                  show={showRegister}
-                />
-              )}
-            </ButtonGroup>
-            <Nav.Link href="/Cart">
+            <Button variant="success" className="mx-2" onClick={toggleShowLogin}>
+              Login
+            </Button>
+            {showLogin && (
+              <Login
+                toggleShowLogin={toggleShowLogin}
+                handleLogin={handleLogin}
+                show={showLogin}
+              />
+            )}
+            <Button variant="warning" className="mx-2" onClick={toggleShowRegister}>
+              Register
+            </Button>
+            {showRegister && (
+              <Register
+                toggleShowRegister={toggleShowRegister}
+                handleRegister={handleRegister}
+                show={showRegister}
+              />
+            )}
+            <Nav.Link as={Link} to="/Cart">
               <img src={Cart} width="50px" height="50px" />
             </Nav.Link>
           </Nav>
         </>
       )}
+    </Navbar.Collapse>
     </Navbar>
   );
 };

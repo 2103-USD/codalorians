@@ -2,5 +2,5 @@ const client = require('./client');
 const { rebuildDB } = require('./seedData');
 
 rebuildDB()
-  .catch(console.error)
+  .catch((error) => console.error(error))
   .finally(() => client.end());

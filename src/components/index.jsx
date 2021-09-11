@@ -11,3 +11,5 @@ export { default as CheckoutForm } from './CheckoutForm';
 export { default as SearchBar } from './SearchBar';
 export { default as SideBar } from './SideBar';
 export { default as AllUsers } from './AllUsers';
+export { default as Home } from './Home'; 
+export { default as Checkout } from './Checkout';

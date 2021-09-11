@@ -1,33 +1,53 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Nav, Container } from "react-bootstrap";
 import UserData from "./UserData";
-import { Nav } from "react-bootstrap";
 
-const Sidebar = ({currentUser, showSideBar, toggleSideBar}) => {
-  const { user } = currentUser;
+const Sidebar = ({ showSideBar, toggleSideBar, currentUser }) => {
   return (
     <div
       className={showSideBar ? "sidebar sidebar--expanded" : "sidebar"}
       onClick={toggleSideBar}
     >
-      {user ? (
-        <>
-          {" "}
-          <h6>Hello {user.firstname}! </h6>{" "}
-          <img src={user.imageurl} height="100px" />{" "}
-        </>
-      ) : (
-        <>
-          {" "}
-          <h6> Hello Guest! Feel free to browse </h6>{" "}
-        </>
-      )}
-      <Nav.Link>Home</Nav.Link>
-      <Nav.Link>Profile</Nav.Link>
-      <h6>Admin Functions</h6>
-      <Nav.Link href="/AllUsers">Users</Nav.Link>
-      <Nav.Link>Products</Nav.Link>
-      <span className="shape"></span>
-      <span className="shape"></span>
+      <Container className="link-container">
+        {/*currentUser ? <UserData /> : <h1>Welcome Guest!</h1>*/}
+        <Nav
+          style={{
+            display: "inline-block",
+          }}
+        >
+          <Nav.Link
+            style={{
+              color: "black",
+              textDecoration: "none",
+            }}
+            as={Link}
+            to="/"
+          >
+            Home
+          </Nav.Link>
+          <Nav.Link
+            style={{
+              color: "black",
+              textDecoration: "none",
+            }}
+            as={Link}
+            to="/AllProducts"
+          >
+            Products
+          </Nav.Link>
+          <Nav.Link
+            style={{
+              color: "black",
+              textDecoration: "none",
+            }}
+            as={Link}
+            to="/Cart"
+          >
+            Cart
+          </Nav.Link>
+        </Nav>
+      </Container>
     </div>
   );
 };

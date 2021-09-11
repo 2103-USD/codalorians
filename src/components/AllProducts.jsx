@@ -2,19 +2,11 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts } from "./api";
 import Product from "./Product";
 
-const AllProducts = () => {
-  const [productList, setProductList] = useState([]);
+const AllProducts = ({productList}) => {
 
-  useEffect(
-    () =>
-      getAllProducts()
-        .then((data) => setProductList(data))
-        .catch((error) => console.error(error)),
-    []
-  );
 
   return (
-    <div style={{display:"flex", flexFlow:"row wrap", paddingLeft:"300px"}}>
+    <div style={{display:"flex", flexFlow:"row wrap"}}>
       {productList.map((product, index) => {
         return (
           <Product

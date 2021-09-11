@@ -1,31 +1,30 @@
-function requireUserOrAdmin(req, res, next) {
+async function requireUser(req, res, next) {
   try {
-    if (!req.user || !req.isadmin) {
-      next({
-         name: "MissingCredsError",
-         message: "You do not have the proper credentials to perform this action",
-       });
-    }}
-    catch ({name, message}) {
-      next({name, message})
-  }
-}
-
-function requireAdmin(req, res, next) {
-  try {
-    if (!req.user.isadmin) {
-      next({
-        name: "MissingAdminError",
-        message: "You must be an admin to perform this action",
+    if (!req.user) {
+      res.status(401).next({
+        name: "UnauthorizedAccess",
+        message: "You must be logged in to perform this action",
       });
     }
-   }
-  catch({name, message}) {
-    next({name, message});
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 }
 
+async function requireAdmin(req, res, next) {
+  try {
+    if (!req.user.admin) {
+      res.status(401).next({
+        name: "UnauthorizedAccess",
+        message: "You do not have the proper access privileges",
+      });
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+}
 
-module.exports = 
-  { requireUserOrAdmin,
-  requireAdmin }
+module.exports = {
+  requireUser,
+  requireAdmin,
+};

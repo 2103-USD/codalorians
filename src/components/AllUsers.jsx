@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { getUsersList } from "./api/index";
 
 const AllUsers = () => {
-    const [usersList, setUsersList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
 
-    useEffect(() => 
-      getUsersList.then((data) => setUsersList(data)).catch((error) => console.error(error)), []);
-    
-    return (
-    <div>
+  useEffect(
+    () =>
+      getUsersList
+        .then((data) => setUsersList(data))
+        .catch((error) => console.error(error)),
+    []
+  );
 
-    </div>
-    )
-}
+  return <div></div>;
+};
 
 export default AllUsers;
