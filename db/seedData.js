@@ -1,6 +1,7 @@
 const client = require("./client");
 const { createProduct } = require("./products");
 const { createUser } = require("./users");
+
 const {
   seedProducts,
   seedReviews,
@@ -11,6 +12,7 @@ const {
 const { createOrder } = require("./orders");
 const { createReview } = require("./reviews");
 const { createOrderProduct } = require("./order_products");
+
 
 async function dropTables() {
   try {
@@ -110,7 +112,9 @@ async function createInitialProducts() {
 }
 
 async function createInitialOrders() {
+  console.log("Starting to create orders...")
   try {
+
     console.log("CREATING ORDERS");
     const orders = await Promise.all(
       seedOrders.map((order) => createOrder(order))
@@ -152,6 +156,7 @@ async function createInitialReviews() {
   }
 }*/
 
+
 async function rebuildDB() {
   try {
     client.connect();
@@ -164,7 +169,6 @@ async function rebuildDB() {
     //await createInitialReviews();
   } catch (error) {
     console.error("Error during rebuild DB");
-
   }
 }
 
