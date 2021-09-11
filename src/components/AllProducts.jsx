@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts } from "./api";
 import Product from "./Product";
 
-const AllProducts = ({productList}) => {
+const AllProducts = (props) => {
 
+  const {productList, cart} = props
 
   return (
     <div style={{display:"flex", flexFlow:"row wrap"}}>
@@ -11,6 +12,7 @@ const AllProducts = ({productList}) => {
         return (
           <Product
             ProductId={product.id}
+            cart = {cart}
             ListIndex={index}
             name={product.name}
             artist={product.artist}

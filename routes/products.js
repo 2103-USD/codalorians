@@ -1,7 +1,7 @@
 const express = require("express");
 const productsRouter = express.Router();
 
-const { requireAdmin, requireUserOrAdmin } = require("./utils");
+const { requireAdmin, requireUser } = require("./utils");
 const {
   getAllProducts,
   getProductById,
@@ -29,7 +29,8 @@ productsRouter.get("/product/:productId", async (req, res, next) => {
   }
 });
 
-// requires admin!
+
+//requires admin!
 productsRouter.post("/products", requireAdmin, async (req, res, next) => {
   try {
     const newProduct = await createProduct({ ...req.body });
@@ -111,4 +112,4 @@ productsRouter.get("/products/:productId/orders", requireAdmin, async (req, res,
   }
 })
 
-module.exports = productsRouter;
+module.exports = productsRouter

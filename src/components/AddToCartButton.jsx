@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import { Cart } from ".";
 import { createOrder, addProductToOrder, getProductById } from "./api/index";
 
 import { getLocalCart, storeLocalCart } from "./auth/auth";
 
-const AddToCartButton = ({
-  quant,
-  setAddedToCart,
-  productId,
-  price,
-  currentUser,
-  setCurrentOrder,
-  currentOrder,
-}) => {
+const AddToCartButton = (props) => {
+  const {
+    quant,
+    setAddedToCart,
+    productId,
+    price,
+    currentUser,
+    setCurrentOrder,
+    currentOrder,
+    cart,
+  } = props;
+
   const handleAddToCart = async (event) => {
     event.preventDefault();
     const id = productId;
@@ -26,10 +30,7 @@ const AddToCartButton = ({
         await addProductToOrder({ orderId, productId, price, quantity });
         // need to move select dropdown and connect value
       } else if (!currentUser) {
-        const currentCart = getLocalCart();
-        const currentProduct = getProductById(id);
-        currentCart.push(currentProduct);
-        storeLocalCart(currentCart);
+        //cart.products.push(currentProduct);
       }
     } catch (error) {
       console.error(error);
