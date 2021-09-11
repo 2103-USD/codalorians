@@ -111,6 +111,7 @@ async function createInitialProducts() {
 }
 
 async function createInitialOrders() {
+  console.log("Starting to create orders...")
   try {
     console.log("CREATING ORDERS");
     const orders = await Promise.all(
@@ -136,6 +137,7 @@ async function createInitialOrderProducts() {
     console.error(error);
   }
 }
+
 /*
 async function createInitialReviews() {
   try {
@@ -153,6 +155,7 @@ async function createInitialReviews() {
   }
 }
 */
+
 async function rebuildDB() {
   try {
     client.connect();
@@ -168,7 +171,6 @@ async function rebuildDB() {
     throw Error;
   }
 }
-
 module.exports = {
   rebuildDB,
 };

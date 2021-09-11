@@ -26,6 +26,8 @@ function requireAdmin(req, res, next) {
 }
 
 
-module.exports = 
-  { requireUserOrAdmin,
-  requireAdmin }
+module.exports = {
+  requireUserOrAdmin,
+  requireAdmin
+};
+
