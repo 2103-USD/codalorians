@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem, Form } from "react-bootstrap";
 import AddToCartButton from "./AddToCartButton";
 import RemoveFromCartButton from "./RemoveFromCartButton";
 
-const Product = (product) => {
+const Product = (props) => {
   const [quant, setQuant] = useState();
   const {
     productId,
@@ -15,7 +15,8 @@ const Product = (product) => {
     imageurl,
     instock,
     category,
-  } = product;
+    cart
+  } = props;
   const handleQuantity = (event) => {
     event.preventDefault();
     const productQuant = event.target.value;

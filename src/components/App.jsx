@@ -127,6 +127,7 @@ const App = () => {
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts
+              cart={cart}
               productList={productList}
               setCurrentProduct={setCurrentProduct}
             />
