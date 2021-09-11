@@ -3,7 +3,7 @@ const ordersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
-const { requireUserOrAdmin, requireAdmin } = require("./utils");
+const { requireUser, requireAdmin } = require("./utils");
 
 ordersRouter.use((req, res, next) => {
   console.log("A request is being made to /orders");
@@ -30,7 +30,7 @@ ordersRouter.get("/", requireAdmin, async (req, res, next) => {
 
 //THIS SHOULD RETURN A USER'S CART
 //NEEDS requireUser FROM /UTILS
-ordersRouter.get("/cart", requireUserOrAdmin, async (req, res, next) => {
+ordersRouter.get("/cart", requireUser, async (req, res, next) => {
   try {
     const cart = await getCartByUser(req.user.id);
     res.send(cart);
@@ -40,7 +40,7 @@ ordersRouter.get("/cart", requireUserOrAdmin, async (req, res, next) => {
 });
 
 //THIS SHOULD CREATE A NEW ORDER
-ordersRouter.post("/", requireUserOrAdmin, async (req, res, next) => {
+ordersRouter.post("/", requireUser, async (req, res, next) => {
   const { status, userId } = req.body;
   try {
     const userOrder = await createOrder({ status, userId });
@@ -50,7 +50,7 @@ ordersRouter.post("/", requireUserOrAdmin, async (req, res, next) => {
   }
 });
 
-ordersRouter.patch("/:orderId", async (req, res, next) => {
+ordersRouter.patch("/:orderId", requireUser, async (req, res, next) => {
   try {
     const { orderId } = req.params;
     const { id, status, userId } = req.body;
@@ -61,7 +61,7 @@ ordersRouter.patch("/:orderId", async (req, res, next) => {
   }
 });
 
-ordersRouter.delete("/:orderId", async (req, res, next) => {
+ordersRouter.delete("/:orderId", requireUser, async (req, res, next) => {
   try {
     const { orderId } = req.params;
     const { id, status, userId } = req.body;

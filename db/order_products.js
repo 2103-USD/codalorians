@@ -1,5 +1,4 @@
 const client = require("./client");
-// const { getOrderById } = require("./orders");
 
 async function getOrderProductById(id) {
   try {
@@ -19,7 +18,25 @@ async function getOrderProductById(id) {
   }
 }
 
-//test to make sure it functions properly
+async function createOrderProduct({ productid, orderid, price, quantity }) {
+  try {
+    const {
+      rows: [orderProduct],
+    } = await client.query(
+      `
+      INSERT INTO order_products(productid, orderid, price, quantity)
+      VALUES($1, $2, $3, $4)
+      RETURNING *;
+      `,
+      [productid, orderid, price, quantity]
+    );
+    return orderProduct;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 async function addProductToOrder({ orderId, productId, price, quantity }) {
   try {
     const {
@@ -64,20 +81,24 @@ async function addProductToOrder({ orderId, productId, price, quantity }) {
   }
 }
 
-//Needs testing to ensure proper functionality
+
 async function updateOrderProduct({ id, price, quantity }) {
-  const {
-    rows: [orderProduct],
-  } = await client.query(
-    `
+  try {
+    const {
+      rows: [orderProduct],
+    } = await client.query(
+      `
     UPDATE order_products(price, quantity)
     SET price = $1, quantity = $2
     WHERE id = $3
     RETURNING *;
   `,
-    [price, quantity, id]
-  );
-  return orderProduct;
+      [price, quantity, id]
+    );
+    return orderProduct;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function destroyOrderProduct(id) {
@@ -102,5 +123,6 @@ module.exports = {
   getOrderProductById,
   addProductToOrder,
   updateOrderProduct,
+  createOrderProduct,
   destroyOrderProduct,
 };

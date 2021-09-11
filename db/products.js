@@ -24,7 +24,6 @@ async function getAllProducts() {
             SELECT *
             FROM products;
         `);
-    console.log("These are the products from DB:", rows);
     return rows;
   } catch (error) {
     throw error;
@@ -33,6 +32,7 @@ async function getAllProducts() {
 
 async function createProduct({
   name,
+  artist,
   description,
   price,
   imageurl,
@@ -44,44 +44,41 @@ async function createProduct({
       rows: [product],
     } = await client.query(
       `
-            INSERT INTO products (name, description, price, imageurl, instock, category)
-            VALUES ($1, $2, $3, $4, $5, $6)
+            INSERT INTO products(name, artist, description, price, imageurl, instock, category)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING *;
         `,
-      [name, description, price, imageurl, instock, category]
+      [name, artist, description, price, imageurl, instock, category]
     );
-    console.log(product);
     return product;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
 // needs eyes on it to make sure when status is completed it won't be deleted
 async function destroyProduct({ id }) {
   try {
-    if (status) {
-      const {
-        rows: [product],
-      } = await client.query(
-        `
+    const {
+      rows: [product],
+    } = await client.query(
+      `
       DELETE FROM products
       WHERE id=$1
       RETURNING *
     `,
-        [id]
-      );
+      [id]
+    );
 
-      await client.query(
-        `
+    await client.query(
+      `
       DELETE FROM order_products
-      WHERE "productId"=$1;
+      WHERE "productid"=$1;
     `,
-        [id]
-      );
-    }
+      [id]
+    );
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -93,15 +90,15 @@ async function updateProduct({ id, name, description, price }) {
     } = await client.query(
       `
       UPDATE products
-      SET name = $1, desciption = $2, price = $3
-      WHERE id = ${id}
+      SET name=$1, desciption=$2, price=$3
+      WHERE id=$4
       RETURNING *;
     `,
-      [name, description, price]
+      [name, description, price, id]
     );
     return product;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 

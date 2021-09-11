@@ -10,7 +10,7 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState(null);
-  const { setCurrentUser, handleLogin } = props;
+  const { handleLogin } = props;
 
   function validateForm() {
     return username.length > 0 && password.length > 0;

@@ -12,12 +12,11 @@ const Register = (props) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [imageurl, setImageUrl] = useState("");
   const [isadmin, setIsAdmin] = useState(false);
 
   const [registerMessage, setRegisterMessage] = useState(null);
 
-  const { setCurrentUser, handleLogin } = props;
+  const { handleRegister } = props;
   const messageDiv = registerMessage ? (
     <div className="message">{registerMessage}</div>
   ) : (
@@ -36,12 +35,14 @@ const Register = (props) => {
         firstname,
         lastname,
         email,
-        imageurl,
         username,
         password,
         isadmin
       );
-      await handleLogin(result);
+      if (result) {
+      await handleRegister(result);
+      resetForm(event);
+      }
       setRegisterMessage(result.message);
     } catch (error) {
       console.error(error);
@@ -50,6 +51,15 @@ const Register = (props) => {
       );
     }
   }
+
+function resetForm(event) {
+  setUsername("");
+  setPassword("");
+  setFirstname("");
+  setLastname("");
+  setEmail("");
+}
+
 
   return (
     <Modal
@@ -88,15 +98,6 @@ const Register = (props) => {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group size="lg" controlId="imageurl">
-            <Form.Label>Imageurl</Form.Label>
-            <Form.Control
-              autoFocus
-              type="text"
-              value={imageurl}
-              onChange={(e) => setImageUrl(e.target.value)}
             />
           </Form.Group>
           <Form.Group size="lg" controlId="username">

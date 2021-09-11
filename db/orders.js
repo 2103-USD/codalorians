@@ -21,19 +21,22 @@ async function getOrderById(id) {
 // may need to look into change users.username AS "userName"
 async function getAllOrders() {
   try {
-    const { rows: orders } = await client.query(`
+    const {
+      rows: [orders],
+    } = await client.query(`
             SELECT orders.*, users.username AS "username"
             FROM orders
             JOIN users ON orders."userId" = users.id;
         `);
 
-    const { rows: joinedProducts } = await client.query(`
+    const {
+      rows: [joinedProducts],
+    } = await client.query(`
       SELECT products.*, "productId", order_products.id as "orderProductId"
       FROM order_products
       INNER JOIN products
       ON "productId" = products.id;
     `);
-
     const ordersWithProducts = orders.map((order) => {
       order.products = joinedProducts.filter(
         (product) => product.orderId === order.id
@@ -46,10 +49,11 @@ async function getAllOrders() {
   }
 }
 
-// may need to look into change users.username AS "userName"
 async function getOrdersByUser({ username }) {
   try {
-    const { rows: orders } = await client.query(
+    const {
+      rows: [orders],
+    } = await client.query(
       `
             SELECT orders.*, users.username AS "username"
             FROM orders
@@ -81,12 +85,16 @@ async function getOrdersByUser({ username }) {
 // may need to look into change users.username AS "userName"
 async function getOrdersByProduct({ id }) {
   try {
-    const { rows: orders } = await client.query(`
+    const {
+      rows: [orders],
+    } = await client.query(`
       SELECT orders.*, users.username AS "username"
       FROM orders
       JOIN users ON orders."userId" = users.id;
     `);
-    const { rows: joinedProducts } = await client.query(
+    const {
+      rows: [joinedProducts],
+    } = await client.query(
       `
       SELECT products.*, "orderId", order_products.id as "orderProductId"
       FROM order_products
@@ -124,7 +132,9 @@ async function getCartByUser({ id }) {
       [id]
     );
 
-    const { rows: joinedProducts } = await client.query(`
+    const {
+      rows: [joinedProducts],
+    } = await client.query(`
     SELECT products.*, "orderId", order_products.id as "orderProductId"
     FROM order_products
     INNER JOIN products
