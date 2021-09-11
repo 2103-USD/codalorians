@@ -94,3 +94,12 @@ export async function getProductById() {
   try {
   } catch (error) {}
 }
+
+export async function getOrderCart() {
+  try {
+    const { data } = await axios.get("/api/orders/cart");
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
+}
