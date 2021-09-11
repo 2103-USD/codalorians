@@ -24,4 +24,5 @@ const OrderData = ({ order }) => {
     </>
   );
 };
+
 export default OrderData;

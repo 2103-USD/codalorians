@@ -1,0 +1,400 @@
+{
+  "seedProducts": [
+    {
+      "name": "Forever And Ever x Finity ",
+      "artist": "New Found Glory",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2739b5845d633286df570c9ce81",
+      "instock": true,
+      "category": "Punk"
+    },
+    {
+      "name": "Dreamland",
+      "artist": "Glass Animals",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273712701c5e263efc8726b1464",
+      "instock": true,
+      "category": "Pop"
+    },
+    {
+      "name": "Die For It (ft. Nas)",
+      "artist": "The Weekend",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2736c1f7876d7322a196d9880ca",
+      "instock": true,
+      "category": "Pop"
+    },
+    {
+      "name": "Planet Her",
+      "artist": "Doja Cat",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2734c767857a41ec9da231adb6a",
+      "instock": true,
+      "category": "Rap"
+    },
+    {
+      "name": "Changes",
+      "artist": "Justin Bieber",
+      "description": "2020",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2737fe4a82a08c4f0decbeddbc6",
+      "instock": true,
+      "category": "Pop"
+    },
+    {
+      "name": "Abbey Road",
+      "artist": "The Beatles",
+      "description": "1969",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Rearview Town",
+      "artist": "Jason Aldean",
+      "description": "2018",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27397696e218e92fa4c2640c6ee",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "Dig Your Roots",
+      "artist": "Florida Georgia Line",
+      "description": "2016",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27305f4943d0f3a292234e74ab8",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "Stoney",
+      "artist": "Post Malone",
+      "description": "2016",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27355404f712deb84d0650a4b41",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
+      "name": "DAMN.",
+      "artist": "Kendrick Lamar",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2738b52c6b9bc4e43d873869699",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "Dangerous",
+      "artist": "Morgan Wallen",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273287f7215b7fadb7d54e4fa8d",
+      "instock": true,
+      "category": "Country"
+    },
+    {
+      "name": "4:44",
+      "artist": "JAY-Z",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2737513c4956ea5552caf02eab6",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
+      "name": "Certified Lover Boy",
+      "artist": "Drake",
+      "description": "2021",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273bd6587e9a32c161be8c71100",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
+      "name": "What's Going On",
+      "artist": "Marvin Gaye",
+      "description": "1971",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273b36949bee43217351961ffbc",
+      "instock": true,
+      "category": "R&B"
+    },
+    {
+      "name": "Pet Sounds",
+      "artist": "The Beach Boys",
+      "description": "1966",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273bde8dfd1922129f3d9e3732f",
+      "instock": true,
+      "category": "Surf Rock"
+    },
+    {
+      "name": "Blue",
+      "artist": "Joni Mitchell",
+      "description": "1971",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273e9f77be85457110ebf304da7",
+      "instock": true,
+      "category": "Folk"
+    },
+    {
+      "name": "Songs in the Key of Life",
+      "artist": "Stevie Wonder",
+      "description": "1976",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50",
+      "instock": true,
+      "category": "Soul"
+    },
+    {
+      "name": "Deep Cuts",
+      "artist": "Daft Punk",
+      "description": "2020",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67706c0000bebb1547f05ef26902754b8738c2",
+      "instock": true,
+      "category": "Electronica"
+    },
+    {
+      "name": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "description": "1973",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273f05e5ac32fdd79d100315a20",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Illmatic",
+      "artist": "Nas",
+      "description": "1994",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273045fc920ecf4f8094888ec26",
+      "instock": true,
+      "category": "Hip-Hop"
+    },
+    {
+      "name": "Transatlanticism",
+      "artist": "Death Cab for Cutie",
+      "description": "2003",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2739cee4aea1e76e95ba1fdf63d",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Nevermind (Remastered)",
+      "artist": "Nirvana",
+      "description": "1991",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273e175a19e530c898d167d39bf",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "channel ORANGE",
+      "artist": "Frank Ocean",
+      "description": "2012",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2737aede4855f6d0d738012e2e5",
+      "instock": true,
+      "category": "R&B"
+    },
+    {
+      "name": "Ten",
+      "artist": "Pearl Jam",
+      "description": "1991",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27376713b7514fdc2770ec12ab7",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Siamese Dream (2011 - Remaster)",
+      "artist": "The Smashing Pumpkins",
+      "description": "1993",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2736af07f596b36d08f0361326b",
+      "instock": true,
+      "category": "Rock"
+    }
+  ],
+  "seedUsers": [
+    {
+      "firstname": "Alex",
+      "lastname": "Yambao",
+      "email": "alex.yambao@someemail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "ayambao",
+      "password": "abc123",
+      "isadmin": true
+    },
+    {
+      "firstname": "Enzi",
+      "lastname": "Schow",
+      "email": "enzi.schow@someemail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "eschow",
+      "password": "abc123",
+      "isadmin": true
+    },
+    {
+      "firstname": "Anthony",
+      "lastname": "Fernan",
+      "email": "anthony.fernan@someemail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "afernan",
+      "password": "abc123",
+      "isadmin": true
+    },
+    {
+      "firstname": "Schowman",
+      "lastname": "Eniznan",
+      "email": "really@gmail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "smanenzi",
+      "password": "abc123",
+      "isadmin": false
+    },
+    {
+      "firstname": "Schnaked",
+      "lastname": "Ferman",
+      "email": "getschnaked@gmail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "fermanschnaker",
+      "password": "abc123",
+      "isadmin": false
+    }
+  ],
+  "seedReviews": [
+    {
+      "userid": "1",
+      "productid": "1",
+      "rating": "5",
+      "review": "Great album"
+    },
+    {
+      "userid": "2",
+      "productid": "3",
+      "rating": "5",
+      "review": "How have I never listened to this album"
+    },
+    {
+      "userid": "3",
+      "productid": "4",
+      "rating": "4",
+      "review": "Just couldnt get in to it"
+    },
+    {
+      "userid": "3",
+      "productid": "1",
+      "rating": "2",
+      "review": "Whatever happened to good music"
+    },
+    {
+      "userid": "4",
+      "productid": "2",
+      "rating": "2",
+      "review": "Can I get my money back"
+    }
+  ],
+  "seedOrders": [
+    {
+      "userid": 1,
+      "status": "in progress"
+    },
+    {
+      "userid": 2,
+      "status": "in progress"
+    },
+    {
+      "userid": 3,
+      "status": "in progress"
+    },
+    {
+      "userid": 1,
+      "status": "Delivered"
+    },
+    {
+      "userid": 4,
+      "status": "Cancelled"
+    },
+    {
+      "userid": 4,
+      "status": "in progress"
+    },
+    {
+      "userid": 3,
+      "status": "in progress"
+    },
+    {
+      "userid": 5,
+      "status": "delivered"
+    },
+    {
+      "userid": 1,
+      "status": "Cancelled"
+    },
+    {
+      "userid": 2,
+      "status": "in progress"
+    }
+  ],
+  "seedOrderProducts": [
+    {
+      "productid": 1,
+      "orderid": 1,
+      "price": 30,
+      "quantity": 2
+    },
+    {
+      "productid": 2,
+      "orderid": 3,
+      "price": 50,
+      "quantity": 1
+    },
+    {
+      "productid": 4,
+      "orderid": 2,
+      "price": 20,
+      "quantity": 1
+    },
+    {
+      "productid": 3,
+      "orderid": 4,
+      "price": 70,
+      "quantity": 3
+    },
+    {
+      "productid": 1,
+      "orderid": 1,
+      "price": 30,
+      "quantity": 4
+    },
+    {
+      "productid": 2,
+      "orderid": 3,
+      "price": 50,
+      "quantity": 1
+    },
+    {
+      "productid": 4,
+      "orderid": 2,
+      "price": 20,
+      "quantity": 2
+    },
+    {
+      "productid": 3,
+      "orderid": 4,
+      "price": 70,
+      "quantity": 2
+    }
+  ]
+}

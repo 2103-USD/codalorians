@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCurrentUser } from "../auth/auth";
 
 export async function getAllProducts() {
   try {
@@ -31,26 +32,43 @@ export const registerUser = async (
     localStorage.setItem("token", JSON.stringify(data.token));
     return data;
   } catch (error) {
-    throw error;
+    console.error(error)
   }
 };
 
 export const loginUser = async (username, password) => {
   try {
-    const { data } = await axios.post('/api/users/login', {
-      username, password
-    })
+    const { data } = await axios.post("/api/users/login", {
+      username,
+      password,
+    });
     localStorage.setItem("token", JSON.stringify(data.token));
     return data;
   } catch (error) {
-    throw error;
+    console.error(error)
   }
 };
 
-export const getOrders = async () => {
+export const getUserCart = async (userId) => {
   try {
-  } catch (error) {}
+    const { data } = await axios.get("/api/orders/cart", {userId})
+    localStorage.setItem("cart", JSON.stringify(data.cart));
+    return data
+  } catch (error) {
+    console.error(error);
+  }
 };
+
+export const getUsersList = async () => {
+  try {
+    const user = await getCurrentUser();
+    const { data } = await axios.get("/api/users", {user})
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export const getProducts = async () => {
   try {
@@ -75,4 +93,13 @@ export async function addProductToOrder() {
 export async function getProductById() {
   try {
   } catch (error) {}
+}
+
+export async function getOrderCart() {
+  try {
+    const { data } = await axios.get("/api/orders/cart");
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
 }

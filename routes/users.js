@@ -2,7 +2,7 @@ const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { requireUserOrAdmin } = require("./utils");
+const { requireAdmin, requireUser} = require("./utils");
 
 const {
   createUser,
@@ -10,18 +10,11 @@ const {
   getAllUsers,
   getUserById,
   getUserByUsername,
+  updateUser,
 } = require("../db");
 
 usersRouter.post("/register", async (req, res, next) => {
-  const {
-    firstname,
-    lastname,
-    email,
-    imageurl,
-    username,
-    password,
-    isadmin,
-  } = req.body;
+  const { firstname, lastname, email, username, password, isadmin } = req.body;
 
   try {
     const _user = await getUserByUsername(username);
@@ -36,17 +29,16 @@ usersRouter.post("/register", async (req, res, next) => {
       res.status(401);
       return next({
         name: "PasswordLengthError",
-        message: "Password needs to be at least 8 character.",
+        message: "Password needs to be at least 8 characters.",
       });
     }
     const user = await createUser({
       firstname,
       lastname,
       email,
-      imageurl,
       username,
       password,
-      isadmin
+      isadmin,
     });
     const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, {
       expiresIn: "1w",
@@ -91,7 +83,7 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/users/me", async (req, res, next) => {
+usersRouter.get("/me", async (req, res, next) => {
   try {
     if (req.user) {
       const { id } = req.user;
@@ -103,6 +95,52 @@ usersRouter.get("/users/me", async (req, res, next) => {
         name: "NotLoggedIn",
         message: "You must log in first",
       });
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+
+
+usersRouter.get("/", async (req, res, next) => {
+  try {
+    const users = await getAllUsers();
+    return users;
+==
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+usersRouter.patch("/users/:userId", requireAdmin, async (req, res, next) => {
+  const { userId: id } = req.params;
+  const { firstname, lastname, email, isAdmin } = req.body;
+
+  try {
+    const userToUpdate = await getUserById(userId);
+    if (userToUpdate === undefined) {
+      next({
+        name: "UserNotFound",
+        message: `There is no user with id #${id}`,
+      });
+    } else {
+      const updatedUser = await updateUser({
+        id,
+        firstname,
+        lastname,
+        email,
+        isAdmin,
+      });
+      if (updatedUser !== undefined) {
+        res.send(updatedUser);
+      } else {
+        next({
+          name: "FailedUserUpdate",
+          message: "User was not updated",
+        });
+      }
     }
   } catch ({ name, message }) {
     next({ name, message });

@@ -26,7 +26,7 @@ async function createUser({
     );
     return user;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -42,7 +42,7 @@ async function getUser({ username, password }) {
       throw "Password not a match";
     }
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -60,7 +60,7 @@ async function getUserByUsername(username) {
     );
     return user;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -72,7 +72,7 @@ async function getAllUsers() {
     usersList.forEach((user) => delete user.password);
     return usersList;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -90,26 +90,26 @@ async function getUserById(userId) {
     delete user.password;
     return user;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
-async function updateUser({ id, firstname, lastname, email, isAdmin }) {
+async function updateUser({ id, firstname, lastname, email, isadmin }) {
   try {
     const {
       rows: [user],
     } = await client.query(
       `
       UPDATE users
-      SET firstname = $1, lastname = $2, email = $3, isAdmin = $4
-      WHERE id = ${id}
+      SET firstname =$1, lastname=$2, email=$3, isadmin=$4
+      WHERE id = $5
       RETURNING *;
     `,
-      [firstname, lastname, email, isAdmin]
+      [firstname, lastname, email, isadmin, id]
     );
     return user;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 

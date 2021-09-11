@@ -20,19 +20,22 @@ async function getOrderById(id) {
 
 async function getAllOrders() {
   try {
-    const { rows: orders } = await client.query(`
+    const {
+      rows: [orders],
+    } = await client.query(`
             SELECT orders.*, users.username AS "username"
             FROM orders
             JOIN users ON orders."userId" = users.id;
         `);
 
-    const { rows: joinedProducts } = await client.query(`
+    const {
+      rows: [joinedProducts],
+    } = await client.query(`
       SELECT products.*, "productId", order_products.id as "orderProductId"
       FROM order_products
       INNER JOIN products
       ON "productId" = products.id;
     `);
-
     const ordersWithProducts = orders.map((order) => {
       order.products = joinedProducts.filter(
         (product) => product.orderId === order.id
@@ -47,7 +50,9 @@ async function getAllOrders() {
 
 async function getOrdersByUser({ username }) {
   try {
-    const { rows: orders } = await client.query(
+    const {
+      rows: [orders],
+    } = await client.query(
       `
             SELECT orders.*, users.username AS "username"
             FROM orders
@@ -78,12 +83,16 @@ async function getOrdersByUser({ username }) {
 
 async function getOrdersByProduct({ id }) {
   try {
-    const { rows: orders } = await client.query(`
+    const {
+      rows: [orders],
+    } = await client.query(`
       SELECT orders.*, users.username AS "username"
       FROM orders
       JOIN users ON orders."userId" = users.id;
     `);
-    const { rows: joinedProducts } = await client.query(
+    const {
+      rows: [joinedProducts],
+    } = await client.query(
       `
       SELECT products.*, "orderId", order_products.id as "orderProductId"
       FROM order_products
@@ -120,7 +129,9 @@ async function getCartByUser({ id }) {
       [id]
     );
 
-    const { rows: joinedProducts } = await client.query(`
+    const {
+      rows: [joinedProducts],
+    } = await client.query(`
     SELECT products.*, "orderId", order_products.id as "orderProductId"
     FROM order_products
     INNER JOIN products
@@ -139,21 +150,74 @@ async function getCartByUser({ id }) {
   }
 }
 
-async function createOrder({ status, userId }) {
+async function createOrder({ status, userid }) {
   try {
     const {
       rows: [order],
     } = await client.query(
       `
-      INSERT INTO orders("status", "userId")
+      INSERT INTO orders("status", "userid")
       VALUES ($1, $2)
       RETURNING *;
     `,
-      [status, userId]
+      [status, userid]
     );
     return order;
   } catch (error) {
     throw error;
+  }
+}
+
+async function updateOrder( fields = {}) {
+  const { id } = fields;
+  const setString = Object.keys(fields)
+    .map ((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+
+    if (setString.length === 0 ) {
+      return "";
+    }
+
+  try { 
+    const {
+      rows: [updatedOrder],
+    } = await client.query(`
+      UPDATE routines
+      SET ${setString}
+      WHERE id=${id}
+      RETURNING *;
+    `,
+    Object.values(fields)
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function completeOrder({id}) {
+  try {
+    const { rows: [order] } = await client.query(`
+    UPDATE orders
+    SET status="completed"
+    WHERE id=$1
+    RETURNING *;
+    `, [id]);
+    return order
+  } catch (error) {
+      console.error(error)
+  }
+}
+
+async function cancelOrder({id}) {
+  try {
+    const { rows: [order] } = await client.query(`
+      UPDATE orders
+      SET status="cancelled"
+      WHERE id=$1
+      RETURNING *;
+    `, [id]);
+  } catch (error) {
+      console.error(error)
   }
 }
 
@@ -164,4 +228,7 @@ module.exports = {
   getOrdersByProduct,
   getCartByUser,
   createOrder,
+  completeOrder,
+  cancelOrder,
+  updateOrder
 };
