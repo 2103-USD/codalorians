@@ -41,7 +41,8 @@ ordersProductsRouter.post("/:orderId/products", async (req, res, next) => {
 
 //PATCH /order_products/:orderProductId
 ordersProductsRouter.patch(
-  "/:orderProductId", requireUser,
+  "/:orderProductId",
+  requireUser,
   async (req, res, next) => {
     const { quantity, price } = req.body;
     const { orderProductId } = req.params;
@@ -78,4 +79,4 @@ ordersProductsRouter.delete(
   }
 );
 
-module.exports = ordersProductsRouter;
+module.exports = ordersProductsRouter ;

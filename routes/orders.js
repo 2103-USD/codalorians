@@ -76,3 +76,5 @@ ordersRouter.delete("/:orderId", requireUser, async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = ordersRouter ;
