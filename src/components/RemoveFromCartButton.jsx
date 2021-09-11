@@ -19,9 +19,10 @@ const RemoveFromCartButton = ({ setCart }) => {
       name="RemoveFromCart"
       type="Button"
       value="RemoveFromCart"
+      className="m-1"
       onClick={handleRemoveFromCart}
     >
-      Remove From Cart
+      Remove
     </Button>
   );
 };

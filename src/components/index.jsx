@@ -6,3 +6,8 @@ export { default as OrderData} from './OrderData';
 export { default as Product} from './Product';
 export { default as Register} from './Register';
 export { default as UserData} from './UserData';
+export { default as NavBar } from './NavBar';
+export { default as CheckoutForm } from './CheckoutForm';
+export { default as SearchBar } from './SearchBar';
+export { default as SideBar } from './SideBar';
+export { default as AllUsers } from './AllUsers';

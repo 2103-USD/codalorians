@@ -15,7 +15,6 @@ productsRouter.get("/", async (req, res, next) => {
 productsRouter.get("/product/:productId", async (req, res, next) => {
   try {
     const product = await getProductById(id);
-
     res.send(product);
   } catch (error) {
     next({ name: "ErrorMsg", message: `${error}` });

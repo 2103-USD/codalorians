@@ -33,6 +33,7 @@ async function getAllProducts() {
 
 async function createProduct({
   name,
+  artist,
   description,
   price,
   imageurl,
@@ -44,13 +45,12 @@ async function createProduct({
       rows: [product],
     } = await client.query(
       `
-            INSERT INTO products (name, description, price, imageurl, instock, category)
-            VALUES ($1, $2, $3, $4, $5, $6)
+            INSERT INTO products (name, artist, description, price, imageurl, instock, category)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING *;
         `,
-      [name, description, price, imageurl, instock, category]
+      [name, artist, description, price, imageurl, instock, category]
     );
-    console.log(product);
     return product;
   } catch (error) {
     console.error(error);

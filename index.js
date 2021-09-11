@@ -41,6 +41,7 @@ server.get("*", (req, res) => {
 });
 
 // error handling middleware
+
 server.use((error, req, res, next) => {
   console.error("SERVER ERROR: ", error);
   if (res.statusCode < 400) res.status(500);
@@ -54,7 +55,6 @@ server.use((error, req, res, next) => {
 
 server.listen(PORT, async () => {
   console.log(`Server is running on ${PORT}!`);
-
   try {
     await client.connect();
     console.log("Database is open for business!");

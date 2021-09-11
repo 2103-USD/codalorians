@@ -14,13 +14,14 @@ const AllProducts = () => {
   );
 
   return (
-    <div>
+    <div style={{display:"flex", flexFlow:"row wrap", paddingLeft:"300px"}}>
       {productList.map((product, index) => {
         return (
           <Product
             ProductId={product.id}
             ListIndex={index}
             name={product.name}
+            artist={product.artist}
             description={product.description}
             price={product.price}
             imageurl={product.imageurl}

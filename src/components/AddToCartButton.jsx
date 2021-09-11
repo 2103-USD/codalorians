@@ -43,9 +43,10 @@ const AddToCartButton = ({
       name="AddToCart"
       type="Button"
       value="AddCart"
+      className="m-1"
       onClick={handleAddToCart}
     >
-      Add to Cart
+      Add
     </Button>
   );
 };

@@ -1,0 +1,284 @@
+{
+  "seedProducts": [
+    {
+      "name": "What's Going On",
+      "artist": "Marvin Gaye",
+      "description": "1971",
+      "price": 20.0,
+      "imageurl": "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-001-Marvin-Gaye-WHATS-GOING-ON.jpg?w=1000",
+      "instock": true,
+      "category": "R&B"
+    },
+    {
+      "name": "Pet Sounds",
+      "artist": "The Beach Boys",
+      "description": "1966",
+      "price": 20.0,
+      "imageurl": "https://www.udiscovermusic.com/wp-content/uploads/2017/05/The-Beach-Boys-Pet-Sounds.jpg",
+      "instock": true,
+      "category": "Surf Rock"
+    },
+    {
+      "name": "Blue",
+      "artist": "Joni Mitchell",
+      "description": "1971",
+      "price": 20.0,
+      "imageurl": "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-003-JoniMitchell-BLUE-HR.jpg?w=1000",
+      "instock": true,
+      "category": "Folk"
+    },
+    {
+      "name": "Songs in the Key of Life",
+      "artist": "Stevie Wonder",
+      "description": "1976",
+      "price": 20.0,
+      "imageurl": "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-004-Stevie-Wonder-SONGS-IN-THE-KEY-OF-LIFE.jpg?w=1000",
+      "instock": true,
+      "category": "Soul"
+    },
+    {
+      "name": "Deep Cuts",
+      "artist": "Daft Punk",
+      "description": "2020",
+      "price": 20.0,
+      "imageurl": "https://media.senscritique.com/media/000019257218/source_big/Deep_Cuts_Compilation.jpg",
+      "instock": true,
+      "category": "Electronica"
+    },
+    {
+      "name": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "description": "1973",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273f05e5ac32fdd79d100315a20",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Illmatic",
+      "artist": "Nas",
+      "description": "1994",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273045fc920ecf4f8094888ec26",
+      "instock": true,
+      "category":"Hip Hop"
+    },
+    {
+      "name": "Transatlanticism",
+      "artist": "Death Cab for Cutie",
+      "description": "2003",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2739cee4aea1e76e95ba1fdf63d",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Nevermind (Remastered)",
+      "artist": "Nirvana",
+      "description": "1991",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b273e175a19e530c898d167d39bf",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "channel ORANGE",
+      "artist": "Frank Ocean",
+      "description": "2012",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2737aede4855f6d0d738012e2e5",
+      "instock": true,
+      "category":"R&B"
+
+    },
+    {
+      "name": "Ten",
+      "artist": "Pearl Jam",
+      "description": "1991",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b27376713b7514fdc2770ec12ab7",
+      "instock": true,
+      "category": "Rock"
+    },
+    {
+      "name": "Siamese Dream (2011 - Remaster)",
+      "artist": "The Smashing Pumpkins",
+      "description": "1993",
+      "price": 20.0,
+      "imageurl": "https://i.scdn.co/image/ab67616d0000b2736af07f596b36d08f0361326b",
+      "instock": true,
+      "category": "Rock"
+    }
+  ],
+  "seedUsers": [
+    {
+      "firstname": "Alex",
+      "lastname": "Yambao",
+      "email": "alex.yambao@someemail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "ayambao",
+      "password": "abc123",
+      "isadmin": true
+    },
+    {
+      "firstname": "Enzi",
+      "lastname": "Schow",
+      "email": "enzi.schow@someemail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "eschow",
+      "password": "abc123",
+      "isadmin": true
+    },
+    {
+      "firstname": "Anthony",
+      "lastname": "Fernan",
+      "email": "anthony.fernan@someemail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "afernan",
+      "password": "abc123",
+      "isadmin": true
+    },
+    {
+      "firstname": "Schowman",
+      "lastname": "Eniznan",
+      "email": "really@gmail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "smanenzi",
+      "password": "abc123",
+      "isadmin": false
+    },
+    {
+      "firstname": "Schnaked",
+      "lastname": "Ferman",
+      "email": "getschnaked@gmail.com",
+      "imageurl": "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
+      "username": "fermanschnaker",
+      "password": "abc123",
+      "isadmin": false
+    }
+  ],
+  "seedReviews": [
+    {
+      "review": "Good board",
+      "rating": 5,
+      "productid": 1,
+      "userid": 2
+    },
+    {
+      "review": "Wouldn't buy this again",
+      "rating": 5,
+      "productid": 3,
+      "userid": 2
+    },
+    {
+      "review": "Bought it, it works.",
+      "rating": 4,
+      "productid": 4,
+      "userid": 2
+    },
+    {
+      "review": "Not my favorite board.",
+      "rating": 2,
+      "productid": 1,
+      "userid": 2
+    },
+    {
+      "review": "Broke after the first kickflip.",
+      "rating": 2,
+      "productid": 2,
+      "userid": 3
+    }
+  ],
+  "seedOrders": [
+    {
+      "userid": 1,
+      "status": "in progress"
+    },
+    {
+      "userid": 2,
+      "status": "in progress"
+    },
+    {
+      "userid": 3,
+      "status": "in progress"
+    },
+    {
+      "userid": 1,
+      "status": "Delivered"
+    },
+    {
+      "userid": 4,
+      "status": "Cancelled"
+    },
+    {
+      "userid": 4,
+      "status": "in progress"
+    },
+    {
+      "userid": 3,
+      "status": "in progress"
+    },
+    {
+      "userid": 5,
+      "status": "delivered"
+    },
+    {
+      "userid": 1,
+      "status": "Cancelled"
+    },
+    {
+      "userid": 2,
+      "status": "in progress"
+    }
+  ],
+  "seedOrderProducts": [
+    {
+      "productid": 1,
+      "orderid": 1,
+      "price": 30,
+      "quantity": 2
+    },
+    {
+      "productid": 2,
+      "orderid": 3,
+      "price": 50,
+      "quantity": 1
+    },
+    {
+      "productid": 4,
+      "orderid": 2,
+      "price": 20,
+      "quantity": 1
+    },
+    {
+      "productid": 3,
+      "orderid": 4,
+      "price": 70,
+      "quantity": 3
+    },
+    {
+      "productid": 1,
+      "orderid": 1,
+      "price": 30,
+      "quantity": 4
+    },
+    {
+      "productid": 2,
+      "orderid": 3,
+      "price": 50,
+      "quantity": 1
+    },
+    {
+      "productid": 4,
+      "orderid": 2,
+      "price": 20,
+      "quantity": 2
+    },
+    {
+      "productid": 3,
+      "orderid": 4,
+      "price": 70,
+      "quantity": 2
+    }
+  ]
+}

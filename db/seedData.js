@@ -1,12 +1,23 @@
 const client = require("./client");
 const { createProduct } = require("./products");
 const { createUser } = require("./users");
+const {
+  seedProducts,
+  seedReviews,
+  seedOrders,
+  seedOrderProducts,
+  seedUsers,
+} = require("./seeddata.json");
+const { createOrder } = require("./orders");
+const { createReview } = require("./reviews");
+const { createOrderProduct } = require("./order_products");
 
 async function dropTables() {
   try {
     console.log("DROPPING TABLES");
     // drop tables in correct order
     await client.query(`
+    DROP TABLE IF EXISTS reviews;
     DROP TABLE IF EXISTS order_products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
@@ -26,6 +37,7 @@ async function buildTables() {
     CREATE TABLE products (
       id           SERIAL PRIMARY KEY,
       name         VARCHAR(255) NOT NULL,
+      artist        VARCHAR(255) NOT NULL,
       description  TEXT NOT NULL,
       price        MONEY NOT NULL,
       imageurl     TEXT DEFAULT 'https://image.flaticon.com/icons/png/512/2827/2827585.png',
@@ -58,6 +70,15 @@ async function buildTables() {
       price       MONEY NOT NULL,
       quantity    INTEGER NOT NULL DEFAULT (0)
       );
+    
+    CREATE TABLE reviews (
+      id          SERIAL PRIMARY KEY,
+      review      TEXT NOT NULL,
+      rating      INTEGER NOT NULL DEFAULT (0),
+      productid   INTEGER REFERENCES products(id) NOT NULL, 
+      userid      INTEGER REFERENCES users(id) NOT NULL,
+      created     TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    );
     `);
     console.log("TABLES BUILT");
   } catch (Error) {
@@ -68,93 +89,70 @@ async function buildTables() {
 async function createInitialUsers() {
   try {
     console.log("CREATING USERS");
-    const usersToCreate = [
-      {
-        firstname: "Alex",
-        lastname: "Yambao",
-        email: "alex.yambao@someemail.com",
-        imageurl:
-          "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
-        username: "ayambao",
-        password: "abc123",
-        isadmin: true,
-      },
-      {
-        firstname: "Enzi",
-        lastname: "Schow",
-        email: "enzi.schow@someemail.com",
-        imageurl:
-          "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
-        username: "eschow",
-        password: "abc123",
-        isadmin: true,
-      },
-      {
-        firstname: "Anthony",
-        lastname: "Fernan",
-        email: "anthony.fernan@someemail.com",
-        imageurl:
-          "https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg",
-        username: "afernan",
-        password: "abc123",
-        isadmin: true,
-      },
-    ];
-    const users = await Promise.all(
-      usersToCreate.map((user) => createUser(user))
-    );
+    const users = await Promise.all(seedUsers.map((user) => createUser(user)));
     console.log("USERS CREATED", users);
     console.log("FINISHED CREATING USERS");
   } catch (error) {
-    console.error(error);
+    throw(error)
   }
 }
 
 async function createInitialProducts() {
   try {
     console.log("CREATING PRODUCTS");
-    const productsToCreate = [
-      {
-        name: `Sony - 65" Class BRAVIA XR X90J Series LED 4K UHD Smart Google TV`,
-        description:
-          "4X the pixels of Full HD. Found on most modern TVs. Lifelike images and graphics. Great for living rooms, family rooms, larger bedrooms.",
-        price: "1,349.99",
-        imageurl:
-          "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6453/6453208_sd.jpg;maxHeight=640;maxWidth=550",
-        instock: true,
-        category: "Electronics",
-      },
-      {
-        name: `Sony - 55'" Class BRAVIA XR X90J Series LED 4K UHD Smart Google TV`,
-        description:
-          "Everything you watch becomes more detailed and immersive with true-to-life 4K HDR, powered by the all-new Cognitive Processor XR™. Feel the intensity of the sun and experience all the stars of the night sky with Full Array LED and XR Contrast Booster 5. With outstanding picture quality, a flush bezel design, and HDMI 2.1 for next-gen gaming, the X90J 4K HDR LED TV is ready for everything.",
-        price: "1,199.99",
-        imageurl:
-          "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6453/6453205_sd.jpg;maxHeight=640;maxWidth=550",
-        instock: true,
-        category: "Electronics",
-      },
-    ];
     const products = await Promise.all(
-      productsToCreate.map((product) => createProduct(product))
+      seedProducts.map((product) => createProduct(product))
     );
     console.log("Products created:", products);
-    console.log("Finished creating products");
+    console.log("FINISHED CREATING PRODUCTS");
   } catch (error) {
-    console.error(error);
+    throw(error);
   }
 }
 
 async function createInitialOrders() {
   try {
-  } catch (error) {}
+    console.log("CREATING ORDERS");
+    const orders = await Promise.all(
+      seedOrders.map((order) => createOrder(order))
+    );
+    console.log("Orders created", orders);
+    console.log("FINISHED CREATING ORDERS");
+  } catch (error) {
+    throw(error);
+  }
 }
 
 async function createInitialOrderProducts() {
   try {
-  } catch (error) {}
+    console.log("CREATING ORDER PRODUCTS");
+    const orderProducts = await Promise.all(
+      seedOrderProducts.map((orderProduct) =>
+       createOrderProduct(orderProduct))
+    );
+    console.log("These are the order products", orderProducts);
+    console.log("FINISHED CREATING ORDER PRODUCTS");
+  } catch (error) {
+    console.error(error);
+  }
 }
+/*
+async function createInitialReviews() {
+  try {
+    console.log("CREATING REVIEWS");
+    const reviews = await Promise.all(
+      seedReviews.map((review) => {
+        createReview(review);
+      })
+    );
+    console.log("THESE ARE THE REVIEWS", reviews);
+    console.log("FINISHED CREATING REVIEWS");
 
+  } catch (error) {
+    throw error;
+  }
+}
+*/
 async function rebuildDB() {
   try {
     client.connect();
@@ -162,6 +160,9 @@ async function rebuildDB() {
     await buildTables();
     await createInitialUsers();
     await createInitialProducts();
+    await createInitialOrders();
+    await createInitialOrderProducts();
+    //await createInitialReviews();
   } catch (Error) {
     console.error("Error during rebuild DB");
     throw Error;
