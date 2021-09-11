@@ -18,4 +18,4 @@ stripeRouter.post("/", async (req, res, next) => {
   }
 });
 
-module.exports = stripeRouter;
+module.exports = stripeRouter ;

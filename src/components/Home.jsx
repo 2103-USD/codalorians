@@ -2,7 +2,8 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import { Product } from "./";
 
-const Home = ({ productList }) => {
+const Home = (props) => {
+  const { productList } = props;
   const half = Math.ceil(productList.length / 2);
   const list1 = productList.slice(0, half);
   const list2 = productList.slice(-half);
