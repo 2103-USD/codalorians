@@ -94,7 +94,6 @@ async function getUserById(userId) {
   }
 }
 
-//needs eyes on it before being pushed
 async function updateUser({ id, firstname, lastname, email, isAdmin }) {
   try {
     const {

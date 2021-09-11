@@ -17,6 +17,7 @@ import Cart from "./Cart";
 import AllProducts from "./AllProducts";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserData from "./UserData";
+import Checkout from "./Checkout";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -55,6 +56,9 @@ const App = () => {
         </Route>
         <Route path="/UserData">
           <UserData currentUser={currentUser} />
+        </Route>
+        <Route path="/Checkout">
+          <Checkout currentUser={currentUser} />
         </Route>
       </div>
     </Router>

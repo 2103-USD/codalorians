@@ -18,7 +18,6 @@ async function getOrderById(id) {
   }
 }
 
-// may need to look into change users.username AS "userName"
 async function getAllOrders() {
   try {
     const { rows: orders } = await client.query(`
@@ -46,7 +45,6 @@ async function getAllOrders() {
   }
 }
 
-// may need to look into change users.username AS "userName"
 async function getOrdersByUser({ username }) {
   try {
     const { rows: orders } = await client.query(
@@ -78,7 +76,6 @@ async function getOrdersByUser({ username }) {
   }
 }
 
-// may need to look into change users.username AS "userName"
 async function getOrdersByProduct({ id }) {
   try {
     const { rows: orders } = await client.query(`
@@ -109,7 +106,6 @@ async function getOrdersByProduct({ id }) {
   }
 }
 
-// Last function to complete
 async function getCartByUser({ id }) {
   try {
     const {

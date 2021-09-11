@@ -57,7 +57,6 @@ async function createProduct({
   }
 }
 
-// needs eyes on it to make sure when status is completed it won't be deleted
 async function destroyProduct({ id }) {
   try {
     if (status) {
@@ -85,7 +84,6 @@ async function destroyProduct({ id }) {
   }
 }
 
-//needs eyes on it before being pushed
 async function updateProduct({ id, name, description, price }) {
   try {
     const {

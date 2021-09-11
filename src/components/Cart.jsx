@@ -1,48 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Checkout from "./Checkout";
 import { getOrders } from "./api";
 import Button from "react-bootstrap/Button";
 import OrderData from "./OrderData";
-import StripeForm from "./StripeForm";
-import StripeCheckout from "react-stripe-checkout";
-const STRIPE_KEY = process.env.STRIPE_KEY;
+import Nav from "react-bootstrap/Nav";
 
 const Cart = ({ currentUser }) => {
-  const { id, username } = currentUser;
+  const { id, username } = currentUser || {};
   const [cart, setCart] = useState([]);
   const [addedToCart, setAddedToCart] = useState(false);
   const [order, setOrder] = useState({});
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const [ordersList, setOrdersList] = useState([]);
   const [showPay, setShowPay] = useState([]);
 
-  /*
-  useEffect(
-    (id) =>
-      getOrders()
-        .then(setOrdersList(orders))
-        .catch((error) => console.error(error))[currentUser]
-  );
- */
+  // useEffect(
+  //   (id) =>
+  //     getOrders()
+  //       .then(setOrdersList(orders))
+  //       .catch((error) => console.error(error))[currentUser]
+  // );
 
-  function toggleShowPay() {
-    setShowPay(!showPay);
-  }
-
-  async function onToken(token) {
-    try {
-      const response = fetch("/save-stripe-token", {
-        method: "POST",
-        body: JSON.stringify(token),
-      });
-      const data = response.json();
-      return data;
-      alert(`We are in business, ${data.email}`);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // function toggleShowPay() {
+  //   setShowPay(!showPay);
+  // }
 
   return ordersList.length > 0 ? (
     <div>
@@ -54,14 +37,16 @@ const Cart = ({ currentUser }) => {
   ) : (
     <div>
       <h2>Your Cart is Currently Empty</h2>
-      <StripeCheckout stripeKey={STRIPE_KEY}>
-        <Button>PAY</Button>
-      </StripeCheckout>
-      <Route>
+      {/* <Route>
         <Checkout currentUser={currentUser}>
           Checkout {username}'s order
         </Checkout>
-      </Route>
+      </Route> */}
+
+      <Link to="/Checkout">
+        <Button>Checkout</Button>
+      </Link>
+      {showCheckout && <Checkout showCheckout={showCheckout} />}
       {/*UNDER CONSTRUCTION*/}
       {/*<Button toggleShowPay={toggleShowPay} classname="btn btn-primary">Pay</Button>*/}
       {/*showPay && <StripeForm token={onToken} stripeKey={STRIPE_KEY} />*/}
