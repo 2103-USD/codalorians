@@ -1,23 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import OrderData from "./OrderData";
-import UserData from "./UserData";
+import {Button, Form} from "react-bootstrap";
+import {OrderData, UserData} from "./";
 
-const Checkout = ({ user }) => {
+const Checkout = (props) => {
+  const {currentUser} = props;
   return (
-    <>
-      <h1>{user} checkout</h1>
-      <Router>
-        <Route>
-          <UserData />
-        </Route>
-        <Route>
-          <OrderData />
-        </Route>
-      </Router>
-      <button>Complete Order</button>
-      <button>Cancel Order</button>
-    </>
+    <Form>
+      <h1>{currentUser.username ? currentUser.username : "Guest"} checkout</h1>
+      <UserData currentUser={currentUser} />
+      <OrderData />
+      <Button size="sm">Complete Order</Button>
+      <Button size="sm">Cancel Order</Button>
+    </Form>
   );
 };
 

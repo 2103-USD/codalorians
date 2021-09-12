@@ -1,9 +1,9 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { Product } from "./";
+import { ProductCard } from "./";
 
 const Home = (props) => {
-  const { productList } = props;
+  const { productList, cart } = props;
   const half = Math.ceil(productList.length / 2);
   const list1 = productList.slice(0, half);
   const list2 = productList.slice(-half);
@@ -30,18 +30,7 @@ const Home = (props) => {
         {list1.map((product, index) => {
           return (
             <Carousel.Item interval={5000}>
-              <Product
-                ProductId={product.id}
-                ListIndex={index}
-                name={product.name}
-                artist={product.artist}
-                description={product.description}
-                price={product.price}
-                imageurl={product.imageurl}
-                instock={product.instock}
-                category={product.category}
-                key={`productId${product.id}`}
-              />
+              <ProductCard product={product} index={index} cart={cart} />
             </Carousel.Item>
           );
         })}
@@ -50,18 +39,7 @@ const Home = (props) => {
         {list2.map((product, index) => {
           return (
             <Carousel.Item interval={5000}>
-              <Product
-                ProductId={product.id}
-                ListIndex={index}
-                name={product.name}
-                artist={product.artist}
-                description={product.description}
-                price={product.price}
-                imageurl={product.imageurl}
-                instock={product.instock}
-                category={product.category}
-                key={`productId${product.id}`}
-              />
+              <ProductCard product={product} index={index} cart={cart} />
             </Carousel.Item>
           );
         })}

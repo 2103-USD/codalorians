@@ -3,20 +3,19 @@ import { Card, ListGroup, ListGroupItem, Form } from "react-bootstrap";
 import AddToCartButton from "./AddToCartButton";
 import RemoveFromCartButton from "./RemoveFromCartButton";
 
-const Product = (props) => {
+const ProductCard = (props) => {
   const [quant, setQuant] = useState();
+  const {cart, index, product} = props;
   const {
     productId,
     artist,
-    ListIndex,
     name,
     description,
     price,
     imageurl,
     instock,
-    category,
-    cart
-  } = props;
+    category
+  } = product;
   const handleQuantity = (event) => {
     event.preventDefault();
     const productQuant = event.target.value;
@@ -27,7 +26,7 @@ const Product = (props) => {
     <Card
       style={{ width: "18rem", marginBottom: "1rem" }}
       key={`productId${productId}`}
-      ListIndex={ListIndex}
+      ListIndex={index}
     >
       <Card.Img variant="top" src={imageurl} />
       <Card.Body>
@@ -60,4 +59,4 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+export default ProductCard;

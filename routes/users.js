@@ -75,7 +75,8 @@ usersRouter.post("/login", async (req, res, next) => {
         JWT_SECRET,
         { expiresIn: "1 week" }
       );
-      res.send({ user, message: "You're logged in!", token });
+      user.token = token;
+      res.send({user, message: "You're logged in!"});
     }
   } catch (error) {
     next(error);
