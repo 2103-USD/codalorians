@@ -2,7 +2,7 @@ const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { requireAdmin, requireUser} = require("./utils");
+const { requireAdmin, requireUser } = require("./utils");
 
 const {
   createUser,
@@ -101,18 +101,14 @@ usersRouter.get("/me", async (req, res, next) => {
   }
 });
 
-
-
 usersRouter.get("/", async (req, res, next) => {
   try {
     const users = await getAllUsers();
     return users;
-==
   } catch (error) {
     next(error);
   }
 });
-
 
 usersRouter.patch("/users/:userId", requireAdmin, async (req, res, next) => {
   const { userId: id } = req.params;

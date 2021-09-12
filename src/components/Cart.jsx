@@ -11,6 +11,7 @@ const Cart = ({ currentUser }) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const [order, setOrder] = useState({});
   const [ordersList, setOrdersList] = useState([]);
+  const [showCheckout, setShowCheckout] = useState();
 
   /*
   useEffect(

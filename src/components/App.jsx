@@ -117,13 +117,19 @@ const App = () => {
           <Route exact path={"/"} component={Home}>
             <Home productList={productList} />
           </Route>
-          <Route path={"/Checkout"} component={Checkout}>
-            <Elements stripe={stripePromise}>
-              <CheckoutForm
-                orderCheckOut={orderCheckOut}
-                setOrderCheckOut={setOrderCheckOut}
-              />
-            </Elements>
+          <Route
+            path={"/Checkout"}
+            component={Checkout}
+            currentUser={currentUser}
+          >
+            <Checkout>
+              <Elements stripe={stripePromise}>
+                <CheckoutForm
+                  orderCheckOut={orderCheckOut}
+                  setOrderCheckOut={setOrderCheckOut}
+                />
+              </Elements>
+            </Checkout>
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts

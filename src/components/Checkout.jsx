@@ -4,7 +4,6 @@ import OrderData from "./OrderData";
 import UserData from "./UserData";
 import Button from "react-bootstrap/Button";
 import StripeCheckout from "react-stripe-checkout";
-import StripeForm from "./StripeForm";
 const STRIPE_KEY = process.env.STRIPE_KEY;
 
 const Checkout = ({ currentUser }) => {
@@ -30,15 +29,15 @@ const Checkout = ({ currentUser }) => {
   }
 
   return (
-    <>
-      <h1> Checkout</h1>
+    <div className="checkoutForm">
+      <h1>Checkout</h1>
       {/* <UserData currentUser={currentUser} /> */}
       <OrderData />
       <StripeCheckout stripeKey={STRIPE_KEY} onToken={onToken}>
         <Button>Complete Order</Button>
       </StripeCheckout>
       <Button>Cancel Order</Button>
-    </>
+    </div>
   );
 };
 
