@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { sendStripePayment } from "./api/stripe";
 import { Card, ListGroup, Table } from "react-bootstrap";
 
-const CheckoutForm = ({ orderCheckOut, setOrderCheckOut }) => {
+const CheckoutForm = (props) => {
+  const { orderCheckOut, setOrderCheckOut } = props;
   const elements = useElements();
   const stripe = useStripe();
   const [error, setError] = useState(null);
@@ -61,42 +61,40 @@ const CheckoutForm = ({ orderCheckOut, setOrderCheckOut }) => {
 
   return paymentMethod ? (
     <div className="Result">
-      <div>
-        <Card style={{ width: "100%" }}>
-          <Card.Header className="ResultTitle" role="alert">
-            Payment successful
-          </Card.Header>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <b>Order Number</b>: {details.orderId}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <b>Payment Method</b>: {paymentMethod.id}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Table bordered size="sm">
-                <thead>
-                  <tr>
-                    <th>Album & Quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {details.splitDesc.map((desc) => {
-                    return (
-                      <tr key={desc.orderId}>
-                        <td>{desc}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <b>Total Amount</b>: ${details.amount / 100}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card>
-      </div>
+      <Card style={{ width: "100%" }}>
+        <Card.Header className="ResultTitle" role="alert">
+          Payment successful
+        </Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item>
+            <b>Order Number</b>: {details.orderId}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <b>Payment Method</b>: {paymentMethod.id}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Table bordered size="sm">
+              <thead>
+                <tr>
+                  <th>Album & Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {details.splitDesc.map((desc) => {
+                  return (
+                    <tr key={desc.orderId}>
+                      <td>{desc}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <b>Total Amount</b>: ${details.amount / 100}
+          </ListGroup.Item>
+        </ListGroup>
+      </Card>
       <button className="ResetButton" onClick={reset}>
         Reset
       </button>

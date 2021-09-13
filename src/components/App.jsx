@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
 } from "react-router-dom";
 
 import { getAllProducts, getUser, getUserCart } from "./api/index";
@@ -45,11 +44,12 @@ const App = () => {
   const [productList, setProductList] = useState([]);
 
   useEffect(async () => {
-    const user = getCurrentUser();
     getAllProducts()
       .then((data) => setProductList(data))
       .catch((error) => console.error(error));
-    if (user) {
+
+    if (getCurrentUser()) {
+      const { user } = getCurrentUser();
       setCurrentUser(user);
     }
   }, []);
@@ -76,8 +76,9 @@ const App = () => {
 
   function handleLogout() {
     clearCurrentUser();
-    setCurrentUser("");
+    setCurrentUser({});
   }
+
   function handleRegister(user) {
     storeCurrentUser(user);
     setCurrentUser(user);
@@ -107,9 +108,10 @@ const App = () => {
         />
         <Switch>
           <Route exact path={"/"} component={Home}>
-            <Home productList={productList} />
+            <Home productList={productList} cart={cart} />
           </Route>
           <Route path={"/Checkout"} component={Checkout}>
+           <Checkout currentUser={currentUser}/>
             <Elements stripe={stripePromise}>
               <CheckoutForm
                 orderCheckOut={orderCheckOut}

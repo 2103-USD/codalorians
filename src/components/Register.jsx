@@ -68,7 +68,7 @@ function resetForm(event) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton onClick={props.toggleShowRegister}>
+      <Modal.Header closeButton onClick={props.toggleShowRegister} style={{backgroundColor:"#0d6efd"}} >
         <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-5">

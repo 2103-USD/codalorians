@@ -1,29 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { getAllProducts } from "./api";
-import Product from "./Product";
+import React from "react";
+import { ProductCard } from "./";
 
 const AllProducts = (props) => {
-
-  const {productList, cart} = props
+  const { productList, cart } = props;
 
   return (
-    <div style={{display:"flex", flexFlow:"row wrap"}}>
+    <div style={{ display: "flex", flexFlow: "row wrap" }}>
       {productList.map((product, index) => {
-        return (
-          <Product
-            ProductId={product.id}
-            cart = {cart}
-            ListIndex={index}
-            name={product.name}
-            artist={product.artist}
-            description={product.description}
-            price={product.price}
-            imageurl={product.imageurl}
-            instock={product.instock}
-            category={product.category}
-            key={`productId${product.id}`}
-          />
-        );
+        return <ProductCard product={product} index={index} cart={cart} />;
       })}
     </div>
   );
