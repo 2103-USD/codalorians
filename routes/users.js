@@ -105,7 +105,6 @@ usersRouter.get("/", async (req, res, next) => {
   try {
     const users = await getAllUsers();
     return users;
-==
   } catch (error) {
     next(error);
   }
