@@ -88,6 +88,10 @@ const App = () => {
     setCurrentUser(user);
   }
 
+  function handleAddProduct(product) {
+    setCart(product)
+  }
+
   return (
     <Router>
       <NavBar
@@ -119,9 +123,12 @@ const App = () => {
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts
+              setCart={cart}
               cart={cart}
               productList={productList}
               setCurrentProduct={setCurrentProduct}
+              currentProduct={currentProduct}
+              handleAddProduct={handleAddProduct}
             />
           </Route>
           <Route exact path="/Cart" component={Cart}>

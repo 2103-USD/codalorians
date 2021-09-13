@@ -233,5 +233,5 @@ module.exports = {
   createOrder,
   completeOrder,
   cancelOrder,
-  updateOrder
+  updateOrder,
 };
