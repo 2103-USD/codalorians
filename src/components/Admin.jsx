@@ -7,9 +7,18 @@ import {
   Accordion,
 } from 'react-bootstrap';
 
-const Admin = () => {
+const Admin = (product) => {
     const [showProductCreate, setShowProductCreate] = useState(false);
     const [showProductEdit, setShowProductEdit] = useState(false);
     const [showProductDelete, setShowProductDelete] = useState(false);
     const [selectedProduct, setShowSelectProduct] = useState({})
+
+return (
+  <div>
+    
+  </div>
+)
+
 }
+
+export default Admin;

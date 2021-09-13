@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Form, Button, Modal } from "react-bootstrap";
 import { loginUser } from "./api";
 import { storeCurrentUser } from "./auth/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,7 +26,7 @@ const Login = (props) => {
     try {
       const result = await loginUser(username, password);
       if (result.user) {
-        handleLogin(result);
+        handleLogin(result.user);
         setLoginMessage(result.message);
       }
     } catch (error) {
@@ -39,16 +37,20 @@ const Login = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton onClick={props.toggleShowLogin}>
+      <Modal.Header
+        style={{ backgroundColor: "#0dcaf0" }}
+        closeButton
+        onClick={props.toggleShowLogin}
+      >
         <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="p-5">
         <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="username">
+          <Form.Group size="lg" controlId="username" className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control
               autoFocus
@@ -57,7 +59,7 @@ const Login = (props) => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
-          <Form.Group size="lg" controlId="password">
+          <Form.Group size="lg" controlId="password" className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"

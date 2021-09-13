@@ -11,28 +11,23 @@ import {
 } from "./auth/auth";
 
 
-const Product = (props) => {
+const ProductCard = (props) => {
   const [quant, setQuant] = useState();
   const {
-    productId,
-    // artist,
-    ListIndex,
-    // name,
-    // description,
-    // price,
-    // imageurl,
-    // instock,
-    // category,
-    cart,
-    currentProduct,
-    setCart,
-    currentUser,
-    product,
-    setCurrentProduct
-  } = props;
+    artist,
+    name,
+    description,
+    price,
+    imageurl,
+    instock,
+    category
+  } = product;
 
-  // move handleAddToCart here, then refactor product alone (or the components) here
-  // pass setCurrentProduct = product thing im destructuring
+  const handleQuantity = (event) => {
+    event.preventDefault();
+    const productQuant = event.target.value;
+    setQuant(productQuant);
+  };
 
   const handleAddToCart = async () => {
     // needs orderid
@@ -73,17 +68,12 @@ const Product = (props) => {
   };
 
 
-  const handleQuantity = (event) => {
-    event.preventDefault();
-    const productQuant = event.target.value;
-    setQuant(productQuant);
-  };
 
   return (
     <Card
       style={{ width: "18rem", marginBottom: "1rem" }}
       key={`productId${productId}`}
-      ListIndex={ListIndex}
+      ListIndex={index}
     >
       <Card.Img variant="top" src={product.imageurl} />
       <Card.Body>
@@ -116,4 +106,4 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+export default ProductCard;
