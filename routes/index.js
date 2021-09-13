@@ -42,8 +42,8 @@ apiRouter.use("/products", productsRouter);
 apiRouter.use("/order_products", ordersProductsRouter);
 apiRouter.use("/stripe", stripeRouter);
 
-apiRouter.use((error, res,) => {
+apiRouter.use((error, res) => {
   res.send(error);
 });
 
-module.exports = apiRouter;
+module.exports = apiRouter ;

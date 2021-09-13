@@ -64,16 +64,16 @@ function resetForm(event) {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton onClick={props.toggleShowRegister}>
+      <Modal.Header closeButton onClick={props.toggleShowRegister} style={{backgroundColor:"#0d6efd"}} >
         <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="p-5">
         <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="firstname">
+          <Form.Group size="lg" controlId="firstname" className="mb-3">
             <Form.Label>First name</Form.Label>
             <Form.Control
               autoFocus
@@ -82,7 +82,7 @@ function resetForm(event) {
               onChange={(e) => setFirstname(e.target.value)}
             />
           </Form.Group>
-          <Form.Group size="lg" controlId="lastname">
+          <Form.Group size="lg" controlId="lastname" className="mb-3">
             <Form.Label>Last name</Form.Label>
             <Form.Control
               autoFocus
@@ -91,7 +91,7 @@ function resetForm(event) {
               onChange={(e) => setLastname(e.target.value)}
             />
           </Form.Group>
-          <Form.Group size="lg" controlId="email">
+          <Form.Group size="lg" controlId="email" className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
               autoFocus
@@ -100,7 +100,7 @@ function resetForm(event) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-          <Form.Group size="lg" controlId="username">
+          <Form.Group size="lg" controlId="username" className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control
               autoFocus
@@ -109,7 +109,7 @@ function resetForm(event) {
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
-          <Form.Group size="lg" controlId="password">
+          <Form.Group size="lg" controlId="password" className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"

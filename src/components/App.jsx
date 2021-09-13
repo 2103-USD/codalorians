@@ -3,14 +3,15 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
 } from "react-router-dom";
 
-import { getAllProducts, getUserCart } from "./api/index";
+import { getAllProducts, getUser, getUserCart } from "./api/index";
 import {
   getCurrentUser,
   clearCurrentUser,
   storeCurrentUser,
+  getLocalCart,
+  storeLocalCart,
 } from "./auth/auth";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -34,48 +35,40 @@ const stripePromise = loadStripe(
 
 const App = () => {
   const [message, setMessage] = useState("");
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
   const [allProducts, setAllProducts] = useState([]);
-  const [currentProduct, setCurrentProduct] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState({});
   const [orderCheckOut, setOrderCheckOut] = useState();
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({ products: [] });
   const [showSideBar, setToggleSideBar] = useState(false);
   const [productList, setProductList] = useState([]);
 
-  useEffect(
-    () =>
-      getAllProducts()
-        .then((data) => setProductList(data))
-        .catch((error) => console.error(error)),
-    []
-  );
+  useEffect(async () => {
+    getAllProducts()
+      .then((data) => setProductList(data))
+      .catch((error) => console.error(error));
 
-  useEffect(() => {
-    try {
-      const user = getCurrentUser();
+    if (getCurrentUser()) {
+      const { user } = getCurrentUser();
       setCurrentUser(user);
-    } catch (error) {
-      console.error(error);
     }
   }, []);
 
-  useEffect(
-    () =>
-      getAllProducts()
-        .then((data) => setAllProducts(data))
-        .catch((error) => console.error(error)),
-    []
-  );
-
-  async function getCart(userOrStorage) {
-    if (localStorage.getItem("cart")) {
-      setCart(localStorage.getItem("cart"));
+  useEffect(() => {
+    if (currentUser.id) {
+      getUserCart(currentUser.id)
+        .then((data) => setCart(data))
+        .catch((error) => console.error(error));
     } else {
-      const cart = await getUserCart(currentUser.id);
-      setCart(cart);
-      localStorage.setItem("cart", cart);
+      getLocalCart();
     }
-  }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (!currentUser.id) {
+      storeLocalCart(cart);
+    }
+  }, [cart]);
 
   function toggleSideBar() {
     setToggleSideBar(!showSideBar);
@@ -83,7 +76,7 @@ const App = () => {
 
   function handleLogout() {
     clearCurrentUser();
-    setCurrentUser("");
+    setCurrentUser({});
   }
 
   function handleRegister(user) {
@@ -115,9 +108,10 @@ const App = () => {
         />
         <Switch>
           <Route exact path={"/"} component={Home}>
-            <Home productList={productList} />
+            <Home productList={productList} cart={cart} />
           </Route>
           <Route path={"/Checkout"} component={Checkout}>
+           <Checkout currentUser={currentUser}/>
             <Elements stripe={stripePromise}>
               <CheckoutForm
                 orderCheckOut={orderCheckOut}
@@ -127,6 +121,7 @@ const App = () => {
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts
+              cart={cart}
               productList={productList}
               setCurrentProduct={setCurrentProduct}
             />

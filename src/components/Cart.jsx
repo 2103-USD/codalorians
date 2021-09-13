@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getOrders } from "./api";
-import Button from "react-bootstrap/Button";
-import OrderData from "./OrderData";
+import {Button, Nav} from "react-bootstrap";
+import {OrderData, Checkout} from "./";
 
 
 
@@ -33,6 +34,9 @@ const Cart = ({ currentUser }) => {
   ) : (
     <div>
       <h2>Your Cart is Currently Empty</h2>
+      <Nav.Link as={Link} to={"/Checkout"}>
+      <Button>Checkout</Button>
+      </Nav.Link>
     </div>
   );
 };

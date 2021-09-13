@@ -12,9 +12,9 @@ const { requireUser, requireAdmin } = require("./utils");
 //POST /orders/:orderId/products
 ordersProductsRouter.post("/:orderId/products", async (req, res, next) => {
   const { orderId } = req.params;
+  const { quantity } = req.body;
   try {
     const { id, price, instock } = await getOrderById(orderId);
-    const quantity = 1;
     const orderProducts = await getOrdersByProducts(orderId);
     if (
       orderProducts.find((orderproducts) => product.id === orderproducts.id) &&
@@ -41,7 +41,8 @@ ordersProductsRouter.post("/:orderId/products", async (req, res, next) => {
 
 //PATCH /order_products/:orderProductId
 ordersProductsRouter.patch(
-  "/:orderProductId", requireUser,
+  "/:orderProductId",
+  requireUser,
   async (req, res, next) => {
     const { quantity, price } = req.body;
     const { orderProductId } = req.params;
@@ -78,4 +79,4 @@ ordersProductsRouter.delete(
   }
 );
 
-module.exports = ordersProductsRouter;
+module.exports = ordersProductsRouter ;
