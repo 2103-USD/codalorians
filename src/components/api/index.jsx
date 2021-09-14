@@ -57,7 +57,6 @@ export const getUserCart = async (userId) => {
 export const getUsersList = async () => {
   try {
     const { data } = await axios.get("/api/users");
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

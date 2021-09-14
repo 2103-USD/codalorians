@@ -49,7 +49,6 @@ async function addProductToOrder({ orderId, productId, price, quantity }) {
     `,
       [orderId, productId]
     );
-    console.log(prevOrderProduct);
     const { quantity: prevQuantity, price: prevPrice } = prevOrderProduct;
     if (orderProduct) {
       const {
