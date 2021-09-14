@@ -46,4 +46,4 @@ apiRouter.use((error, res) => {
   res.send(error);
 });
 
-module.exports = apiRouter ;
+module.exports = apiRouter;

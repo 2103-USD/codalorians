@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, Container, Button } from "react-bootstrap";
-import UserData from "./UserData";
 import userImg from "./images/User.png";
 
 const Sidebar = (props) => {
@@ -58,14 +57,14 @@ const Sidebar = (props) => {
           ) : (
             ""
           )}
-          {currentUser.id ? (
+          {currentUser.isadmin ? (
             <Nav.Link
               style={{
                 color: "black",
                 textDecoration: "none",
               }}
               as={Link}
-              to="/Cart"
+              to="/Admin"
             >
               <Button variant="success" size="lg">
                 Admin

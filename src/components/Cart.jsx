@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getOrders } from "./api";
-import {Button, Nav} from "react-bootstrap";
-import {OrderData, Checkout} from "./";
-
-
-
+import { Button, Nav } from "react-bootstrap";
+import { OrderData, Checkout } from "./";
 
 const Cart = ({ currentUser }) => {
   //const { id, username } = currentUser;
@@ -13,7 +10,6 @@ const Cart = ({ currentUser }) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const [order, setOrder] = useState({});
   const [ordersList, setOrdersList] = useState([]);
-
 
   /*
   useEffect(
@@ -35,7 +31,7 @@ const Cart = ({ currentUser }) => {
     <div>
       <h2>Your Cart is Currently Empty</h2>
       <Nav.Link as={Link} to={"/Checkout"}>
-      <Button>Checkout</Button>
+        <Button>Checkout</Button>
       </Nav.Link>
     </div>
   );

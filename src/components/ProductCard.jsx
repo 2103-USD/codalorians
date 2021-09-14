@@ -5,7 +5,7 @@ import RemoveFromCartButton from "./RemoveFromCartButton";
 
 const ProductCard = (props) => {
   const [quant, setQuant] = useState();
-  const {cart, index, product} = props;
+  const { cart, index, product } = props;
   const {
     productId,
     artist,
@@ -14,7 +14,7 @@ const ProductCard = (props) => {
     price,
     imageurl,
     instock,
-    category
+    category,
   } = product;
   const handleQuantity = (event) => {
     event.preventDefault();
@@ -25,8 +25,8 @@ const ProductCard = (props) => {
   return (
     <Card
       style={{ width: "18rem", marginBottom: "1rem" }}
-      key={`productId${productId}`}
-      ListIndex={index}
+      key={product.id}
+      listindex={index}
     >
       <Card.Img variant="top" src={imageurl} />
       <Card.Body>

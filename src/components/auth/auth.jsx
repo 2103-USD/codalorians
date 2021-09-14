@@ -1,5 +1,6 @@
 export function storeCurrentUser(user) {
   localStorage.setItem("currentUser", JSON.stringify(user));
+  localStorage.setItem("token", user.token);
 }
 
 export function getCurrentUser() {
@@ -14,6 +15,7 @@ export function getToken() {
 
 export function clearCurrentUser() {
   localStorage.removeItem("currentUser");
+  localStorage.removeItem("token");
 }
 
 export function getLocalCart() {
@@ -22,5 +24,5 @@ export function getLocalCart() {
 }
 
 export function storeLocalCart(cart) {
-  localStorage.setItem('cart', JSON.stringify(cart))
+  localStorage.setItem("cart", JSON.stringify(cart));
 }

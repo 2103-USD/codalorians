@@ -11,7 +11,7 @@ import {
 const SearchBar = () => {
   return (
     <>
-      <InputGroup className="mb-3">
+      <InputGroup style={{ width: "66vw", marginTop: "17px" }}>
         <Button variant="secondary" id="button-addon1">
           Search
         </Button>

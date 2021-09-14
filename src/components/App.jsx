@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  render,
 } from "react-router-dom";
 
 import { getAllProducts, getUser, getUserCart } from "./api/index";
@@ -24,11 +25,10 @@ import {
   NavBar,
   Cart,
   AllProducts,
-  UserData,
+  Admin,
   SideBar,
   Home,
 } from "./";
-
 const stripePromise = loadStripe(
   "pk_test_51JUj7UDh3o5GZx1A8vIc11Jk68TNGp67mAcT3Kq2n3tCUuzIt54R1M4rbqaKNP3FEU3tWJrV2QMPLpJURRRnSuET00IX4qh4Z2"
 );
@@ -43,7 +43,7 @@ const App = () => {
   const [showSideBar, setToggleSideBar] = useState(false);
   const [productList, setProductList] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     getAllProducts()
       .then((data) => setProductList(data))
       .catch((error) => console.error(error));
@@ -62,7 +62,7 @@ const App = () => {
     } else {
       getLocalCart();
     }
-  }, [currentUser]);
+  }, []);
 
   useEffect(() => {
     if (!currentUser.id) {
@@ -111,7 +111,7 @@ const App = () => {
             <Home productList={productList} cart={cart} />
           </Route>
           <Route path={"/Checkout"} component={Checkout}>
-           <Checkout currentUser={currentUser}/>
+            <Checkout currentUser={currentUser} />
             <Elements stripe={stripePromise}>
               <CheckoutForm
                 orderCheckOut={orderCheckOut}
@@ -125,6 +125,9 @@ const App = () => {
               productList={productList}
               setCurrentProduct={setCurrentProduct}
             />
+          </Route>
+          <Route exact path="/Admin" component={Admin}>
+            <Admin />
           </Route>
           <Route exact path="/Cart" component={Cart}>
             <Cart />

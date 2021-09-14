@@ -7,7 +7,14 @@ const AllProducts = (props) => {
   return (
     <div style={{ display: "flex", flexFlow: "row wrap" }}>
       {productList.map((product, index) => {
-        return <ProductCard product={product} index={index} cart={cart} />;
+        return (
+          <ProductCard
+            key={product.id}
+            product={product}
+            index={index}
+            cart={cart}
+          />
+        );
       })}
     </div>
   );

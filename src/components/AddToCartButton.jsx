@@ -39,7 +39,6 @@ const AddToCartButton = (props) => {
 
   return (
     <Button
-      block
       size="sm"
       name="AddToCart"
       type="Button"

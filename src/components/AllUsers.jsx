@@ -6,13 +6,13 @@ const AllUsers = () => {
 
   useEffect(
     () =>
-      getUsersList
+      getUsersList()
         .then((data) => setUsersList(data))
         .catch((error) => console.error(error)),
     []
   );
 
-  return <div></div>;
+  return <></>;
 };
 
 export default AllUsers;
