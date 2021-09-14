@@ -28,7 +28,6 @@ const Register = (props) => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("This is the password from register", password);
     setRegisterMessage(null);
     try {
       const result = await registerUser(

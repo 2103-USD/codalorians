@@ -11,8 +11,10 @@ const AllUsers = () => {
         .catch((error) => console.error(error)),
     []
   );
-
-  return <></>;
+    console.log(userList);
+  return (<>
+  
+  </>);
 };
 
 export default AllUsers;
