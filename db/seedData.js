@@ -50,7 +50,7 @@ async function buildTables() {
       firstname   VARCHAR(255) NOT NULL,
       lastname    VARCHAR(255) NOT NULL,
       email       VARCHAR(255) UNIQUE NOT NULL,
-      imageurl    TEXT DEFAULT 'https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg',
+      imageurl    TEXT DEFAULT 'https://i.ibb.co/sq571d5/user.png',
       username    VARCHAR(255) UNIQUE NOT NULL,
       password    VARCHAR(255) NOT NULL,
       isadmin     BOOLEAN DEFAULT false
