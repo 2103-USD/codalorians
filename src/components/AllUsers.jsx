@@ -3,7 +3,7 @@ import { getUsersList } from "./api/index";
 
 const AllUsers = () => {
   const [usersList, setUsersList] = useState([]);
-
+/*
   useEffect(
     () =>
       getUsersList()
@@ -11,7 +11,7 @@ const AllUsers = () => {
         .catch((error) => console.error(error)),
     []
   );
-    console.log(userList);
+    console.log(userList);*/
   return (<>
   
   </>);
