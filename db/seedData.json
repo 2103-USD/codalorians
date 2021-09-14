@@ -249,7 +249,7 @@
       "firstname": "Anthony",
       "lastname": "Fernan",
       "email": "anthony.fernan@someemail.com",
-      "imageurl": "./user.png",
+      "imageurl": "https://i.ibb.co/sq571d5/user.png",
       "username": "afernan",
       "password": "abc123",
       "isadmin": true
@@ -258,7 +258,7 @@
       "firstname": "Schowman",
       "lastname": "Eniznan",
       "email": "really@gmail.com",
-      "imageurl": "/user.png",
+      "imageurl": "https://i.ibb.co/sq571d5/user.png",
       "username": "smanenzi",
       "password": "abc123",
       "isadmin": false
@@ -267,7 +267,7 @@
       "firstname": "Schnaked",
       "lastname": "Ferman",
       "email": "getschnaked@gmail.com",
-      "imageurl": "/user.png",
+      "imageurl": "https://i.ibb.co/sq571d5/user.png",
       "username": "fermanschnaker",
       "password": "abc123",
       "isadmin": false

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { registerUser } from "./api/index";
-import { storeCurrentUser} from "./auth/auth";
+import { storeCurrentUser } from "./auth/auth";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -13,10 +13,9 @@ const Register = (props) => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [isadmin, setIsAdmin] = useState(false);
-
   const [registerMessage, setRegisterMessage] = useState(null);
-
   const { handleRegister } = props;
+
   const messageDiv = registerMessage ? (
     <div className="message">{registerMessage}</div>
   ) : (
@@ -29,6 +28,7 @@ const Register = (props) => {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log("This is the password from register", password);
     setRegisterMessage(null);
     try {
       const result = await registerUser(
@@ -40,26 +40,22 @@ const Register = (props) => {
         isadmin
       );
       if (result) {
-      await handleRegister(result);
-      resetForm(event);
+        handleRegister(result.user);
+        resetForm(event);
       }
       setRegisterMessage(result.message);
     } catch (error) {
-      console.error(error);
-      setRegisterMessage(
-        "Registration unsuccessful. Duplicate Username, please choose another."
-      );
+      setRegisterMessage(error.message);
     }
   }
 
-function resetForm(event) {
-  setUsername("");
-  setPassword("");
-  setFirstname("");
-  setLastname("");
-  setEmail("");
-}
-
+  function resetForm(event) {
+    setUsername("");
+    setPassword("");
+    setFirstname("");
+    setLastname("");
+    setEmail("");
+  }
 
   return (
     <Modal
@@ -68,7 +64,11 @@ function resetForm(event) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton onClick={props.toggleShowRegister} style={{backgroundColor:"#0d6efd"}} >
+      <Modal.Header
+        closeButton
+        onClick={props.toggleShowRegister}
+        style={{ backgroundColor: "#0d6efd" }}
+      >
         <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-5">
@@ -76,6 +76,7 @@ function resetForm(event) {
           <Form.Group size="lg" controlId="firstname" className="mb-3">
             <Form.Label>First name</Form.Label>
             <Form.Control
+              required
               autoFocus
               type="text"
               value={firstname}
@@ -85,6 +86,7 @@ function resetForm(event) {
           <Form.Group size="lg" controlId="lastname" className="mb-3">
             <Form.Label>Last name</Form.Label>
             <Form.Control
+              required
               autoFocus
               type="text"
               value={lastname}
@@ -94,6 +96,7 @@ function resetForm(event) {
           <Form.Group size="lg" controlId="email" className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              required
               autoFocus
               type="text"
               value={email}
@@ -104,6 +107,7 @@ function resetForm(event) {
             <Form.Label>Username</Form.Label>
             <Form.Control
               autoFocus
+              required
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -112,13 +116,14 @@ function resetForm(event) {
           <Form.Group size="lg" controlId="password" className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
           {messageDiv}
-          <Button block size="lg" type="submit" disabled={!validateForm()}>
+          <Button size="lg" type="submit" disabled={!validateForm()}>
             REGISTER
           </Button>
         </Form>

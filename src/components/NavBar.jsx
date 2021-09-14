@@ -29,86 +29,55 @@ const NavBar = (props) => {
     >
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Navbar.Brand>
+        <Navbar.Brand className="mb-2">
           {" "}
-          <img
-            src={logo}
-            width="150px"
-            height="150px"
-            className="me-auto"
-            padding="5px"
-          />
+          <img src={logo} width="150px" height="150px" className="mx-2" />
         </Navbar.Brand>
-
-        {currentUser.id ? (
+        <Nav>
+          <Nav.Link as={Link} to="/">
+            <img className="mt-3" src={Home} width="40px" height="40px" />
+          </Nav.Link>
+          <SearchBar />
+        </Nav>
+        {currentUser && currentUser.id ? (
           <>
-            <Nav>
-              <Nav.Link as={Link} to="/">
-                <img
-                  src={Home}
-                  style={{ marginRight: "20px" }}
-                  width="40px"
-                  height="40px"
-                />
-              </Nav.Link>
-            </Nav>
-            <SearchBar />
-            <Button
-              variant="danger"
-              size="lg"
-              className="mx-5"
-              onClick={handleLogout}
-            >
+            <Button variant="danger" className="mx-2" onClick={handleLogout}>
               Logout
             </Button>
-            <Nav.Link as={Link} to="/Cart">
-              <img src={Cart} width="50px" height="50px" />
-            </Nav.Link>
           </>
         ) : (
           <>
-            <Nav>
-              <Nav.Link as={Link} to="/">
-                <img
-                  src={Home}
-                  style={{ marginRight: "20px" }}
-                  width="40px"
-                  height="40px"
-                />
-              </Nav.Link>
-            </Nav>
-            <SearchBar />
-            <Nav>
-              <Button variant="info" className="mx-2" onClick={toggleShowLogin}>
-                Login
-              </Button>
-              {showLogin && (
-                <Login
-                  toggleShowLogin={toggleShowLogin}
-                  handleLogin={handleLogin}
-                  show={showLogin}
-                />
-              )}
-              <Button
-                variant="primary"
-                className="mx-2"
-                onClick={toggleShowRegister}
-              >
-                Register
-              </Button>
-              {showRegister && (
-                <Register
-                  toggleShowRegister={toggleShowRegister}
-                  handleRegister={handleRegister}
-                  show={showRegister}
-                />
-              )}
-              <Nav.Link as={Link} to="/Cart">
-                <img src={Cart} width="50px" height="50px" />
-              </Nav.Link>
-            </Nav>
+            <Button variant="info" className="mx-2" onClick={toggleShowLogin}>
+              Login
+            </Button>
+            {showLogin && (
+              <Login
+                toggleShowLogin={toggleShowLogin}
+                handlelogin={handleLogin}
+                show={showLogin}
+              />
+            )}
+            <Button
+              variant="primary"
+              className="mx-2"
+              onClick={toggleShowRegister}
+            >
+              Register
+            </Button>
+            {showRegister && (
+              <Register
+                toggleShowRegister={toggleShowRegister}
+                handleRegister={handleRegister}
+                show={showRegister}
+              />
+            )}
           </>
         )}
+        <Nav>
+          <Nav.Link className="mx-2" as={Link} to="/Cart">
+            <img src={Cart} width="50px" height="50px" />
+          </Nav.Link>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );

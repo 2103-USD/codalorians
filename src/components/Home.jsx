@@ -16,8 +16,12 @@ const Home = (props) => {
       >
         {reverseProductList.map((product) => {
           return (
-            <Carousel.Item interval={10000}>
-              <img src={product.imageurl} alt={product.description} />
+            <Carousel.Item key={product.id} interval={10000}>
+              <img
+                key={product.id}
+                src={product.imageurl}
+                alt={product.description}
+              />
               <Carousel.Caption>
                 <h3>{product.name}</h3>
                 <p>{product.artist}</p>
@@ -29,8 +33,13 @@ const Home = (props) => {
       <Carousel variant="dark" style={{ margin: "20px" }}>
         {list1.map((product, index) => {
           return (
-            <Carousel.Item interval={5000}>
-              <ProductCard product={product} index={index} cart={cart} />
+            <Carousel.Item key={product.id} interval={5000}>
+              <ProductCard
+                key={product.id}
+                product={product}
+                index={index}
+                cart={cart}
+              />
             </Carousel.Item>
           );
         })}
@@ -38,8 +47,13 @@ const Home = (props) => {
       <Carousel variant="dark" style={{ margin: "20px" }}>
         {list2.map((product, index) => {
           return (
-            <Carousel.Item interval={5000}>
-              <ProductCard product={product} index={index} cart={cart} />
+            <Carousel.Item key={product.id} interval={5000}>
+              <ProductCard
+                key={product.id}
+                product={product}
+                index={index}
+                cart={cart}
+              />
             </Carousel.Item>
           );
         })}

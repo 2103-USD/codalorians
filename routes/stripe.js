@@ -3,12 +3,11 @@ const stripeRouter = express.Router();
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_KEY);
 
-stripeRouter.post("/", async (req, res, next) => {
+stripeRouter.post("/pay", async (req, res, next) => {
   try {
     const payment = await stripe.paymentIntents.create({
       amount: total,
       currency: "USD",
-      description: albumNameCount,
       payment_method: id,
       confirm: true,
     });
@@ -18,4 +17,4 @@ stripeRouter.post("/", async (req, res, next) => {
   }
 });
 
-module.exports = stripeRouter ;
+module.exports = stripeRouter;

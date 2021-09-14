@@ -29,7 +29,6 @@ productsRouter.get("/product/:productId", async (req, res, next) => {
   }
 });
 
-
 //requires admin!
 productsRouter.post("/products", requireAdmin, async (req, res, next) => {
   try {
@@ -102,14 +101,18 @@ productsRouter.patch(
 );
 
 // requires admin!
-productsRouter.get("/products/:productId/orders", requireAdmin, async (req, res, next) => {
-  const { productId: id } = req.params;
-  try {
-    const products = await getOrdersByProduct({ id });
-    res.send(products);
-  } catch ({name, message}) {
-    next({name, message})
+productsRouter.get(
+  "/products/:productId/orders",
+  requireAdmin,
+  async (req, res, next) => {
+    const { productId: id } = req.params;
+    try {
+      const products = await getOrdersByProduct({ id });
+      res.send(products);
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
   }
-})
+);
 
-module.exports = productsRouter
+module.exports = productsRouter;

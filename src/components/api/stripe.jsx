@@ -1,13 +1,15 @@
 import axios from "axios";
-const STRIPE_KEY = process.env.STRIPE_KEY;
-const Stripe = require('stripe')({STRIPE_KEY});
 
-
-export const sendStripePayment = async ({id, orderCheckOut}) => {
-    try {
-    const { data } = await axios.post('/api/stripe', {id, orderCheckOut});
-    return data;
-    } catch (error) {
-    throw error;
+export const sendStripePayment = async (options) => {
+  const { orderCheckOut, id } = options;
+  try {
+    const { data } = await axios.post("/api/stripe/pay", { id, orderCheckOut });
+    if (!data || data.error) {
+      throw Error({ name: "PaymentError", Message: "Error sending payment." });
+    } else {
+      return data;
     }
-}
+  } catch (error) {
+    console.error(error);
+  }
+};

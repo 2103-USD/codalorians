@@ -79,4 +79,4 @@ ordersProductsRouter.delete(
   }
 );
 
-module.exports = ordersProductsRouter ;
+module.exports = ordersProductsRouter;
