@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getCurrentUser } from "../auth/auth";
 
 export async function getAllProducts() {
   try {
@@ -14,7 +13,6 @@ export const registerUser = async (
   firstname,
   lastname,
   email,
-  imageurl,
   username,
   password,
   isadmin
@@ -24,15 +22,13 @@ export const registerUser = async (
       firstname,
       lastname,
       email,
-      imageurl,
       username,
       password,
       isadmin,
     });
-    localStorage.setItem("token", JSON.stringify(data.token));
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 
@@ -42,34 +38,42 @@ export const loginUser = async (username, password) => {
       username,
       password,
     });
-    localStorage.setItem("token", JSON.stringify(data.token));
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 
 export const getUserCart = async (userId) => {
   try {
-    const { data } = await axios.get("/api/orders/cart", {userId})
+    const { data } = await axios.get("/api/orders/cart", { userId });
     localStorage.setItem("cart", JSON.stringify(data.cart));
-    return data
+    return data;
   } catch (error) {
     console.error(error);
   }
 };
 // make sure we are getting status "created"
 
-export const getUsersList = async () => {
+export const getUsersList = async (currentUser) => {
+  const { isadmin } = currentUser;
   try {
-    const user = await getCurrentUser();
-    const { data } = await axios.get("/api/users", {user})
-    console.log(data);
+    const { data } = await axios.post("/api/users/all", { isadmin });
     return data;
   } catch (error) {
     console.error(error);
   }
-}
+};
+
+export const getAllOrders = async (currentUser) => {
+  const { isadmin } = currentUser;
+  try {
+    const { data } = await axios.post("/api/orders/all", { isadmin });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const getProducts = async () => {
   try {
@@ -116,6 +120,6 @@ export async function getOrderCart() {
     const { data } = await axios.get("/api/orders/cart");
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }

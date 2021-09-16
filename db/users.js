@@ -10,22 +10,24 @@ async function createUser({
   password,
   isadmin,
 }) {
-  const SALT_COUNT = 10;
-  const hashedpassword = await bcrypt.hash(password, SALT_COUNT);
+  const SALT_COUNT = bcrypt.genSaltSync(10);
+  const hashedpassword = bcrypt.hashSync(password, SALT_COUNT);
   try {
     const {
-      rows: user,
+      rows: [user],
     } = await client.query(
       `
     INSERT INTO users(firstname, lastname, email, imageurl, username, password, isadmin)
     VALUES($1, $2, $3, $4, $5, $6, $7)
     ON CONFLICT (username) DO NOTHING
-    RETURNING id, username;
+    RETURNING *;
     `,
       [firstname, lastname, email, imageurl, username, hashedpassword, isadmin]
     );
+    delete user.password;
     return user;
   } catch (error) {
+    console.error("this is an error from the DB", error);
     throw error;
   }
 }
@@ -66,10 +68,10 @@ async function getUserByUsername(username) {
 
 async function getAllUsers() {
   try {
-    const {
-      rows: [usersList],
-    } = await client.query(`SELECT * FROM users`);
-    usersList.forEach((user) => delete user.password);
+    const { rows: usersList } = await client.query(`SELECT * FROM users;`);
+    usersList.forEach((user) => {
+      delete user.password;
+    });
     return usersList;
   } catch (error) {
     throw error;

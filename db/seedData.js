@@ -13,7 +13,6 @@ const { createOrder } = require("./orders");
 const { createReview } = require("./reviews");
 const { createOrderProduct } = require("./order_products");
 
-
 async function dropTables() {
   try {
     console.log("DROPPING TABLES");
@@ -51,10 +50,10 @@ async function buildTables() {
       firstname   VARCHAR(255) NOT NULL,
       lastname    VARCHAR(255) NOT NULL,
       email       VARCHAR(255) UNIQUE NOT NULL,
-      imageurl    TEXT DEFAULT 'https://as2.ftcdn.net/v2/jpg/00/73/69/47/500_F_73694724_7n3f29wiCflslPQiVFKWOVlMCh76wkHu.jpg',
+      imageurl    TEXT DEFAULT 'https://i.ibb.co/sq571d5/user.png',
       username    VARCHAR(255) UNIQUE NOT NULL,
-      password    VARCHAR(255) UNIQUE NOT NULL,
-      isadmin     BOOLEAN NOT NULL DEFAULT false
+      password    VARCHAR(255) NOT NULL,
+      isadmin     BOOLEAN DEFAULT false
       );
 
     CREATE TABLE orders(
@@ -83,7 +82,7 @@ async function buildTables() {
     `);
     console.log("TABLES BUILT");
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
@@ -94,7 +93,7 @@ async function createInitialUsers() {
     console.log("USERS CREATED", users);
     console.log("FINISHED CREATING USERS");
   } catch (error) {
-    throw(error)
+    throw error;
   }
 }
 
@@ -107,14 +106,13 @@ async function createInitialProducts() {
     console.log("Products created:", products);
     console.log("FINISHED CREATING PRODUCTS");
   } catch (error) {
-    throw(error);
+    throw error;
   }
 }
 
 async function createInitialOrders() {
-  console.log("Starting to create orders...")
+  console.log("Starting to create orders...");
   try {
-
     console.log("CREATING ORDERS");
     const orders = await Promise.all(
       seedOrders.map((order) => createOrder(order))
@@ -122,7 +120,7 @@ async function createInitialOrders() {
     console.log("Orders created", orders);
     console.log("FINISHED CREATING ORDERS");
   } catch (error) {
-    throw(error);
+    throw error;
   }
 }
 
@@ -130,13 +128,12 @@ async function createInitialOrderProducts() {
   try {
     console.log("CREATING ORDER PRODUCTS");
     const orderProducts = await Promise.all(
-      seedOrderProducts.map((orderProduct) =>
-       createOrderProduct(orderProduct))
+      seedOrderProducts.map((orderProduct) => createOrderProduct(orderProduct))
     );
     console.log("These are the order products", orderProducts);
     console.log("FINISHED CREATING ORDER PRODUCTS");
   } catch (error) {
-    throw(error)
+    throw error;
   }
 }
 
@@ -155,7 +152,6 @@ async function createInitialReviews() {
     throw error;
   }
 }*/
-
 
 async function rebuildDB() {
   try {

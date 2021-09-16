@@ -11,7 +11,6 @@ async function createReview({ review, rating, productid, userid }) {
       RETURNING *;`,
       [userid, productid, rating, review ]
     );
-    console.log(newReview)
     return newReview;
   } catch (error) {
     console.error(error)

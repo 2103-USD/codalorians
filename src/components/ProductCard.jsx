@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Card, ListGroup, ListGroupItem, Form } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Form,
+  Pagination,
+} from "react-bootstrap";
 import AddToCartButton from "./AddToCartButton";
 import RemoveFromCartButton from "./RemoveFromCartButton";
 import { createOrder, addProductToOrder, getProductById } from "./api/index";
@@ -26,6 +32,7 @@ const ProductCard = (props) => {
   } = props;
 
 
+
   const handleQuantity = (event) => {
     event.preventDefault();
     const productQuant = event.target.value;
@@ -33,9 +40,6 @@ const ProductCard = (props) => {
   };
 
   const handleAddToCart = async () => {
-    // needs orderid
-    // get cart passed down, cart.id is the order id now
-    // then add product to order using that id
     console.log("this is the product=>", product)
     setCurrentProduct(product)
     console.log("clicked")
@@ -75,39 +79,40 @@ const ProductCard = (props) => {
 
 
   return (
-    <Card
-      style={{ width: "18rem", marginBottom: "1rem" }}
-      key={`productId${productId}`}
-      ListIndex={index}
-    >
-      <Card.Img variant="top" src={product.imageurl} />
-      <Card.Body>
-        <Card.Title> {product.name}</Card.Title>
-        <Card.Subtitle>{product.artist}</Card.Subtitle>
-      </Card.Body>
-      <ListGroup>
-        <ListGroupItem> {product.category} </ListGroupItem>
-        <ListGroupItem> Price: {product.price} </ListGroupItem>
-        <ListGroupItem>
-          {" "}
-          Available: {product.instock ? "In Stock" : "Out of Stock"}{" "}
-        </ListGroupItem>
-        <ListGroupItem> Description: {product.description}</ListGroupItem>
-        <br />
-        <AddToCartButton handleAddToCart={handleAddToCart} cart={cart} setCart={setCart} currentProduct={currentProduct} productId={productId} price={product.price} quant={quant} />
-        <Form.Label> Quantity {quant} </Form.Label>
-        <Form.Range
-          min="0"
-          step="1"
-          max="10"
-          placeholder="0"
-          onChange={(e) => handleQuantity(e)}
-        />
-        <div>
-          <RemoveFromCartButton />
-        </div>
-      </ListGroup>
-    </Card>
+      <Card
+        style={{ width: "18rem", marginBottom: "1rem" }}
+        key={product.id}
+        listindex={index}
+      >
+        <Card.Img variant="top" src={product.imageurl} />
+        <Card.Body>
+          <Card.Title> {product.name}</Card.Title>
+          <Card.Subtitle>{product.artist}</Card.Subtitle>
+        </Card.Body>
+        <ListGroup>
+          <ListGroupItem> {product.category} </ListGroupItem>
+          <ListGroupItem> Price: {product.price} </ListGroupItem>
+          <ListGroupItem>
+            {" "}
+            Available: {product.instock ? "In Stock" : "Out of Stock"}{" "}
+          </ListGroupItem>
+          <ListGroupItem> Description: {product.description}</ListGroupItem>
+          <br />
+          <AddToCartButton handleAddToCart={handleAddToCart} cart={cart} setCart={setCart} currentProduct={currentProduct} productId={productId} price={product.price} quant={quant}/>
+          <Form.Label> Quantity {quant} </Form.Label>
+          <Form.Range
+            min="0"
+            step="1"
+            max="10"
+            placeholder="0"
+            onChange={(e) => handleQuantity(e)}
+          />
+          <div>
+            <RemoveFromCartButton />
+          </div>
+        </ListGroup>
+      </Card>
+
   );
 };
 

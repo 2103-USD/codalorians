@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { loginUser } from "./api";
-import { storeCurrentUser } from "./auth/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState(null);
-  const { handleLogin } = props;
+  const { handlelogin } = props;
 
   function validateForm() {
     return username.length > 0 && password.length > 0;
@@ -26,7 +25,7 @@ const Login = (props) => {
     try {
       const result = await loginUser(username, password);
       if (result.user) {
-        handleLogin(result.user);
+        handlelogin(result.user);
         setLoginMessage(result.message);
       }
     } catch (error) {
@@ -53,6 +52,7 @@ const Login = (props) => {
           <Form.Group size="lg" controlId="username" className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control
+              required
               autoFocus
               type="text"
               value={username}
@@ -62,6 +62,7 @@ const Login = (props) => {
           <Form.Group size="lg" controlId="password" className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

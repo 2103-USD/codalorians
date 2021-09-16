@@ -3,46 +3,19 @@ import { Link } from "react-router-dom";
 import { getOrders } from "./api";
 import {Button, Nav} from "react-bootstrap";
 import {OrderData, Checkout} from "./";
-import { Card, ListGroup, ListGroupItem, Form } from "react-bootstrap";
 import {
-  getLocalCart,
+  getLocalCart
 } from "./auth/auth";
 import { CartCard } from "./";
 
 
 
 
-
-
-
 const Cart = ({ currentUser, setCart, cart, currentProduct, setCurrentProduct }) => {
-  //const { id, username } = currentUser;
-  // const [addedToCart, setAddedToCart] = useState(false);
-  const [order, setOrder] = useState({});
-  const [ordersList, setOrdersList] = useState([]);
 
-  // const { 
-  //   products
-  // } = cart
 
-//   return ordersList.length > 0 ? (
-//     <div>
-//       <h2>Your cart currently has {cart.length} items</h2>
-//       {cart.map((products, index) => {
-//         return <OrderData id={order.id} />;
-//       })}
-//     </div>
-//   ) : (
-//     <div>
-//       <h2>Your Cart is Currently Empty</h2>
-//       <Nav.Link as={Link} to={"/Checkout"}>
-//       <Button>Checkout</Button>
-//       </Nav.Link>
-//     </div>
-//   );
-// };
+
 const currentCart = getLocalCart()
-
 
 return (
   <>
@@ -57,10 +30,12 @@ return (
     })}
     </div>
     <div>
-    <br />
-       <Nav.Link as={Link} to={"/Checkout"}>
-       <Button>Checkout</Button>
-       </Nav.Link>
+
+      <h2>Your Cart is Currently Empty</h2>
+      <Nav.Link as={Link} to={"/Checkout"}>
+        <Button>Checkout</Button>
+      </Nav.Link>
+
     </div>
   
   </div>

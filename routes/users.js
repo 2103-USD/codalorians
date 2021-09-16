@@ -15,17 +15,15 @@ const {
 
 usersRouter.post("/register", async (req, res, next) => {
   const { firstname, lastname, email, username, password, isadmin } = req.body;
-
   try {
     const _user = await getUserByUsername(username);
-
     if (_user) {
       res.status(401);
       return next({
         name: "PreExistingUser",
         message: "A user with that username already exists",
       });
-    } else if (password.length < 8) {
+    } else if (password.length < 5) {
       res.status(401);
       return next({
         name: "PasswordLengthError",
@@ -40,15 +38,20 @@ usersRouter.post("/register", async (req, res, next) => {
       password,
       isadmin,
     });
-    const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, {
-      expiresIn: "1w",
-    });
-
-    res.send({
-      user,
-      message: "Thank you for registering!",
-      token,
-    });
+    if (!user) {
+      return next({
+        name: "RegistrationError",
+        message: "Registration unsuccessful, duplicate user",
+      });
+    } else {
+      const token = jwt.sign(
+        { id: user.id, username: user.username },
+        JWT_SECRET,
+        { expiresIn: "1 week" }
+      );
+      user.token = token;
+      res.send({ user, message: "You're now registered!" });
+    }
   } catch ({ name, message }) {
     next({ name, message });
   }
@@ -77,7 +80,7 @@ usersRouter.post("/login", async (req, res, next) => {
         { expiresIn: "1 week" }
       );
       user.token = token;
-      res.send({user, message: "You're logged in!"});
+      res.send({ user, message: "You're logged in!" });
     }
   } catch (error) {
     next(error);
@@ -102,10 +105,10 @@ usersRouter.get("/me", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/", async (req, res, next) => {
+usersRouter.post("/all", requireAdmin, async (req, res, next) => {
   try {
     const users = await getAllUsers();
-    return users;
+    res.send(users);
   } catch (error) {
     next(error);
   }
@@ -144,4 +147,4 @@ usersRouter.patch("/users/:userId", requireAdmin, async (req, res, next) => {
   }
 });
 
-module.exports = usersRouter ;
+module.exports = usersRouter;

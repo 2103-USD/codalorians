@@ -14,17 +14,8 @@ const Sidebar = (props) => {
       <Container className="link-container">
         {currentUser.username ? (
           <>
-            {" "}
             <h1>Hello {currentUser.username}!</h1>{" "}
-            <img
-              src={
-                currentUser.imageurl ? (
-                  currentUser.imageurl
-                ) : (
-                  <img src={userImg} />
-                )
-              }
-            />{" "}
+            <img src={currentUser.imageurl} height="180px" width="180px" />
           </>
         ) : (
           <>
@@ -50,7 +41,7 @@ const Sidebar = (props) => {
             </Button>
           </Nav.Link>
           {currentUser.id ? (
-            <Nav.Link as={Link} to="/Cart">
+            <Nav.Link as={Link} to="/UserData">
               <Button variant="primary" size="lg">
                 Profile
               </Button>
@@ -58,14 +49,14 @@ const Sidebar = (props) => {
           ) : (
             ""
           )}
-          {currentUser.id ? (
+          {currentUser.isadmin ? (
             <Nav.Link
               style={{
                 color: "black",
                 textDecoration: "none",
               }}
               as={Link}
-              to="/Cart"
+              to="/Admin"
             >
               <Button variant="success" size="lg">
                 Admin

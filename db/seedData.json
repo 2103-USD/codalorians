@@ -231,7 +231,7 @@
       "firstname": "Alex",
       "lastname": "Yambao",
       "email": "alex.yambao@someemail.com",
-      "imageurl": "https://i.ibb.co/sq571d5/user.png",
+      "imageurl": "https://i.imgur.com/2CROtZG.png",
       "username": "ayambao",
       "password": "abc123",
       "isadmin": true
@@ -240,7 +240,7 @@
       "firstname": "Enzi",
       "lastname": "Schow",
       "email": "enzi.schow@someemail.com",
-      "imageurl": "https://i.ibb.co/sq571d5/user.png",
+      "imageurl": "https://i.imgur.com/2CROtZG.png",
       "username": "eschow",
       "password": "abc123",
       "isadmin": true
@@ -249,7 +249,7 @@
       "firstname": "Anthony",
       "lastname": "Fernan",
       "email": "anthony.fernan@someemail.com",
-      "imageurl": "./user.png",
+      "imageurl": "https://i.imgur.com/2CROtZG.png",
       "username": "afernan",
       "password": "abc123",
       "isadmin": true
@@ -258,7 +258,7 @@
       "firstname": "Schowman",
       "lastname": "Eniznan",
       "email": "really@gmail.com",
-      "imageurl": "/user.png",
+      "imageurl": "https://i.imgur.com/2CROtZG.png",
       "username": "smanenzi",
       "password": "abc123",
       "isadmin": false
@@ -267,7 +267,7 @@
       "firstname": "Schnaked",
       "lastname": "Ferman",
       "email": "getschnaked@gmail.com",
-      "imageurl": "/user.png",
+      "imageurl": "https://i.imgur.com/2CROtZG.png",
       "username": "fermanschnaker",
       "password": "abc123",
       "isadmin": false

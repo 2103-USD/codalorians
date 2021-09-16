@@ -5,11 +5,6 @@ const { JWT_SECRET } = process.env;
 
 const { requireUser, requireAdmin } = require("./utils");
 
-ordersRouter.use((req, res, next) => {
-  console.log("A request is being made to /orders");
-  next();
-});
-
 const {
   getAllOrders,
   getCartByUser,
@@ -19,9 +14,11 @@ const {
 
 //THIS SHOULD RETURN A LIST OF ALL ORDERS
 //NEEDS requireAdmin FROM /UTILS
-ordersRouter.get("/", requireAdmin, async (req, res, next) => {
+ordersRouter.post("/all", requireAdmin, async (req, res, next) => {
+  console.log("got to the api route", req.body)
   try {
     const orders = await getAllOrders();
+    console.log(orders)
     res.send(orders);
   } catch (error) {
     next(error);
@@ -77,4 +74,4 @@ ordersRouter.delete("/:orderId", requireUser, async (req, res, next) => {
   }
 });
 
-module.exports = ordersRouter ;
+module.exports = ordersRouter;

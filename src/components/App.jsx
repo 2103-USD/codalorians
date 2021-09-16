@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  render,
 } from "react-router-dom";
 
 import { getAllProducts, getUser, getUserCart } from "./api/index";
@@ -13,37 +14,32 @@ import {
   getLocalCart,
   storeLocalCart,
 } from "./auth/auth";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/index.css";
 
 import {
+  Footer,
   Checkout,
-  CheckoutForm,
+  UserData,
   NavBar,
   Cart,
   AllProducts,
-  UserData,
+  Admin,
   SideBar,
   Home,
 } from "./";
 
-const stripePromise = loadStripe(
-  "pk_test_51JUj7UDh3o5GZx1A8vIc11Jk68TNGp67mAcT3Kq2n3tCUuzIt54R1M4rbqaKNP3FEU3tWJrV2QMPLpJURRRnSuET00IX4qh4Z2"
-);
 
 const App = () => {
   const [message, setMessage] = useState("");
   const [currentUser, setCurrentUser] = useState({});
-  const [allProducts, setAllProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState({});
   const [orderCheckOut, setOrderCheckOut] = useState();
   const [cart, setCart] = useState({ products: [] });
   const [showSideBar, setToggleSideBar] = useState(false);
   const [productList, setProductList] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     getAllProducts()
       .then((data) => setProductList(data))
       .catch((error) => console.error(error));
@@ -62,7 +58,7 @@ const App = () => {
     } else {
       getLocalCart();
     }
-  }, [currentUser]);
+  }, []);
 
   useEffect(() => {
     if (!currentUser.id) {
@@ -104,7 +100,7 @@ const App = () => {
       />
       <div
         className="App"
-        style={{ display: "flex", position: "relative", paddingLeft: "300px" }}
+        style={{ display: "flex", position: "relative", height: "100vh", width: "80vw", paddingLeft: "300px" }}
       >
         <SideBar
           toggleSideBar={toggleSideBar}
@@ -116,13 +112,7 @@ const App = () => {
             <Home productList={productList} cart={cart} />
           </Route>
           <Route path={"/Checkout"} component={Checkout}>
-           <Checkout currentUser={currentUser}/>
-            <Elements stripe={stripePromise}>
-              <CheckoutForm
-                orderCheckOut={orderCheckOut}
-                setOrderCheckOut={setOrderCheckOut}
-              />
-            </Elements>
+            <Checkout currentUser={currentUser}/>
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts
@@ -135,14 +125,21 @@ const App = () => {
               currentUser={currentUser}
             />
           </Route>
+          <Route exact path="/Admin" component={Admin}>
+            <Admin productList={productList} currentUser={currentUser} />
+          </Route>
           <Route exact path="/Cart" component={Cart}>
             <Cart setCart={setCart} cart={cart} currentUser={currentUser} currentProduct={currentProduct} setCurrentProduct={setCurrentProduct}/>
+          </Route>
+          <Route exact path="/UserData" component={UserData}>
+            <UserData currentUser={currentUser}/>
           </Route>
           <Route>
             <h1>404 Page Not Found</h1>
           </Route>
         </Switch>
       </div>
+      <Footer />
     </Router>
   );
 };
