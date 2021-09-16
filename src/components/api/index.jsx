@@ -54,9 +54,20 @@ export const getUserCart = async (userId) => {
   }
 };
 
-export const getUsersList = async () => {
+export const getUsersList = async (currentUser) => {
+  const { isadmin } = currentUser;
   try {
-    const { data } = await axios.get("/api/users");
+    const { data } = await axios.post("/api/users/all", { isadmin });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllOrders = async (currentUser) => {
+  const { isadmin } = currentUser;
+  try {
+    const { data } = await axios.post("/api/orders/all", { isadmin });
     return data;
   } catch (error) {
     console.error(error);

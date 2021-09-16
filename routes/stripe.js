@@ -11,7 +11,7 @@ stripeRouter.post("/pay", async (req, res, next) => {
       payment_method: id,
       confirm: true,
     });
-    return res.status(200).send({ orderId, payment });
+    return res.status(200).send(payment.client_secret);
   } catch (error) {
     throw error;
   }

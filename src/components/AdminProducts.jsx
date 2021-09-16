@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { ProductCard, PaginationComponent } from "./";
+import { AdminProductCard, PaginationComponent } from "./";
 
-const AllProducts = (props) => {
-  const { productList, cart } = props;
+const AdminProducts = (props) => {
+  const { productList } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(4);
   const totalProducts = productList.length;
@@ -24,7 +24,7 @@ const AllProducts = (props) => {
       <div
         style={{
           display: "flex",
-          flexWrap: "nowrap",
+          flexFlow: "row no-wrap",
           maxWidth: "100%",
           justifyContent: "space-around",
           padding: "1rem",
@@ -32,11 +32,10 @@ const AllProducts = (props) => {
       >
         {currentProducts.map((product, index) => {
           return (
-            <ProductCard
-              key={product.id}
+            <AdminProductCard
+              key={product.productId}
               product={product}
               index={index}
-              cart={cart}
             />
           );
         })}
@@ -45,4 +44,4 @@ const AllProducts = (props) => {
   );
 };
 
-export default AllProducts;
+export default AdminProducts;
