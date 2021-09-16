@@ -21,3 +21,5 @@ export { default as AdminOrders } from "./AdminOrders";
 export { default as AdminOrderCard } from "./AdminOrderCard";
 export { default as Footer } from "./Footer";
 export { default as PaginationComponent } from "./PaginationComponent";
+export { default as CartCard } from './CartCard';
+

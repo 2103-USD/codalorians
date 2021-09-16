@@ -14,6 +14,10 @@ const AllProducts = (props) => {
     setCurrentPage(pageNumber);
   }
 
+
+  const {currentUser, productList, cart, currentProduct, setCart, setCurrentProduct} = props
+
+  console.log("This is productList=>", productList)
   return (
     <div style={{ display: "block" }}>
       <PaginationComponent

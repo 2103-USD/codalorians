@@ -66,6 +66,7 @@ const App = () => {
     }
   }, [cart]);
 
+
   function toggleSideBar() {
     setToggleSideBar(!showSideBar);
   }
@@ -83,6 +84,10 @@ const App = () => {
   function handleLogin(user) {
     storeCurrentUser(user);
     setCurrentUser(user);
+  }
+
+  function handleAddProduct(product) {
+    setCart(product)
   }
 
   return (
@@ -111,16 +116,20 @@ const App = () => {
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts
+              setCart={setCart}
               cart={cart}
               productList={productList}
               setCurrentProduct={setCurrentProduct}
+              currentProduct={currentProduct}
+              handleAddProduct={handleAddProduct}
+              currentUser={currentUser}
             />
           </Route>
           <Route exact path="/Admin" component={Admin}>
             <Admin productList={productList} currentUser={currentUser} />
           </Route>
           <Route exact path="/Cart" component={Cart}>
-            <Cart />
+            <Cart setCart={setCart} cart={cart} currentUser={currentUser} currentProduct={currentProduct} setCurrentProduct={setCurrentProduct}/>
           </Route>
           <Route exact path="/UserData" component={UserData}>
             <UserData currentUser={currentUser}/>
