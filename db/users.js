@@ -68,10 +68,10 @@ async function getUserByUsername(username) {
 
 async function getAllUsers() {
   try {
-    const {
-      rows: [usersList],
-    } = await client.query(`SELECT * FROM users`);
-    usersList.forEach((user) => delete user.password);
+    const { rows: usersList } = await client.query(`SELECT * FROM users;`);
+    usersList.forEach((user) => {
+      delete user.password;
+    });
     return usersList;
   } catch (error) {
     throw error;

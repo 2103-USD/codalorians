@@ -105,10 +105,10 @@ usersRouter.get("/me", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/users", requireAdmin, async (req, res, next) => {
+usersRouter.post("/all", requireAdmin, async (req, res, next) => {
   try {
     const users = await getAllUsers();
-    return users;
+    res.send(users);
   } catch (error) {
     next(error);
   }

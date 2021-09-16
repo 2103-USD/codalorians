@@ -21,6 +21,7 @@ async function getOrderById(id) {
 // may need to look into change users.username AS "userName"
 async function getAllOrders() {
   try {
+    console.log("got to the db")
     const {
       rows: [orders],
     } = await client.query(`
