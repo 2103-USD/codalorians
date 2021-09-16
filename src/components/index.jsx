@@ -13,3 +13,4 @@ export { default as SideBar } from './SideBar';
 export { default as AllUsers } from './AllUsers';
 export { default as Home } from './Home'; 
 export { default as Checkout } from './Checkout';
+export { default as CartCard } from './CartCard';

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, Container, Button } from "react-bootstrap";
 import UserData from "./UserData";
-import userImg from "./images/User.png";
+import userImg from "./images/user.png";
 
 const Sidebar = (props) => {
   const { showSideBar, toggleSideBar, currentUser } = props;

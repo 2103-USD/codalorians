@@ -70,6 +70,7 @@ const App = () => {
     }
   }, [cart]);
 
+
   function toggleSideBar() {
     setToggleSideBar(!showSideBar);
   }
@@ -125,16 +126,17 @@ const App = () => {
           </Route>
           <Route exact path="/AllProducts" component={AllProducts}>
             <AllProducts
-              setCart={cart}
+              setCart={setCart}
               cart={cart}
               productList={productList}
               setCurrentProduct={setCurrentProduct}
               currentProduct={currentProduct}
               handleAddProduct={handleAddProduct}
+              currentUser={currentUser}
             />
           </Route>
           <Route exact path="/Cart" component={Cart}>
-            <Cart />
+            <Cart setCart={setCart} cart={cart} currentUser={currentUser} currentProduct={currentProduct} setCurrentProduct={setCurrentProduct}/>
           </Route>
           <Route>
             <h1>404 Page Not Found</h1>

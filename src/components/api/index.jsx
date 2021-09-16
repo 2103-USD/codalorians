@@ -58,6 +58,7 @@ export const getUserCart = async (userId) => {
     console.error(error);
   }
 };
+// make sure we are getting status "created"
 
 export const getUsersList = async () => {
   try {
@@ -81,13 +82,28 @@ export const getUser = async () => {
 };
 
 export async function createOrder() {
+  const status = "created"
   try {
-  } catch (error) {}
+    const {data: cart} = await axios.post("/api/orders", {
+      status
+    })
+    return cart
+  } catch (error) {
+  console.error(error)
+}
 }
 
-export async function addProductToOrder() {
+export async function addProductToOrder(productId, price, quantity) {
   try {
-  } catch (error) {}
+    const { data } = await axios.get("/api/orders/cart", {
+      productId,
+      price,
+      quantity
+    });
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export async function getProductById() {

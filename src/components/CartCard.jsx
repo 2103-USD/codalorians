@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Card, ListGroup, ListGroupItem, Form } from "react-bootstrap";
-import AddToCartButton from "./AddToCartButton";
 import RemoveFromCartButton from "./RemoveFromCartButton";
 import { createOrder, addProductToOrder, getProductById } from "./api/index";
 import {
@@ -11,7 +10,7 @@ import {
 } from "./auth/auth";
 
 
-const ProductCard = (props) => {
+const CartCard = (props) => {
   const [quant, setQuant] = useState();
 
   const {
@@ -25,6 +24,16 @@ const ProductCard = (props) => {
     index
   } = props;
 
+  /* const {
+    artist,
+    name,
+    description,
+    price,
+    imageurl,
+    instock,
+    category
+  } = product;
+  */
 
   const handleQuantity = (event) => {
     event.preventDefault();
@@ -32,47 +41,7 @@ const ProductCard = (props) => {
     setQuant(productQuant);
   };
 
-  const handleAddToCart = async () => {
-    // needs orderid
-    // get cart passed down, cart.id is the order id now
-    // then add product to order using that id
-    console.log("this is the product=>", product)
-    setCurrentProduct(product)
-    console.log("clicked")
-    console.log("This is currentUser =>",currentUser)
-    // console.log("This is cart =>",cart)
-    const quantity = quant;
-    const price = product.price
-    try {
-    //   setAddedToCart(true);
-      if (currentUser) {
-        let _cart;
-        if (!cart.id) {
-            _cart = await createOrder()
-        } 
-        await addProductToOrder({ orderId:_cart.id || cart.id, productId, price, quantity });
-        setCart([...cart.products, currentProduct])
-        console.log("This is the cart state =>", cart)
-      } else if (!currentUser) {
-        const currentCart = await getLocalCart()
-
-        console.log("This is the product =>", product)
-
-
-        
-        currentCart.products.push(product)
-
-        console.log("This is the currentCart=>", currentCart)
-        console.log("and this is cart=>", cart)
-
-        storeLocalCart(currentCart)
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-
+// handleRemoveFromCart
 
   return (
     <Card
@@ -90,11 +59,10 @@ const ProductCard = (props) => {
         <ListGroupItem> Price: {product.price} </ListGroupItem>
         <ListGroupItem>
           {" "}
-          Available: {product.instock ? "In Stock" : "Out of Stock"}{" "}
+          Availability: {product.instock ? "In Stock" : "Out of Stock"}{" "}
         </ListGroupItem>
         <ListGroupItem> Description: {product.description}</ListGroupItem>
         <br />
-        <AddToCartButton handleAddToCart={handleAddToCart} cart={cart} setCart={setCart} currentProduct={currentProduct} productId={productId} price={product.price} quant={quant} />
         <Form.Label> Quantity {quant} </Form.Label>
         <Form.Range
           min="0"
@@ -111,4 +79,4 @@ const ProductCard = (props) => {
   );
 };
 
-export default ProductCard;
+export default CartCard;

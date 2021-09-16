@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import logo from "./images/CONGO.svg";
 import Cart from "./images/Cart.png";
-import Home from "./images/Home.png";
+import Home from "./images/home.png";
 import { Register, Login } from "./";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchBar from "./SearchBar";
